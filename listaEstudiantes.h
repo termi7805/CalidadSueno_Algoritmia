@@ -1,7 +1,7 @@
 
 #include "calidadSueño.h"
 
-typedef struct calidadSueño tipoElementoLista;
+typedef struct calidadDelSueño tipoElementoLista;
 
 typedef struct celdaEstudiantes{
     tipoElementoLista dato;

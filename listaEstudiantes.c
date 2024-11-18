@@ -94,6 +94,52 @@ listaEstudiantes cargarDatos()
 
 
 
+void minMax (int min[20], int max[20], listaEstudiantes lista, calidadSueño calidad)
+{
+
+
+void normalizar(listaEstudiantes *lista, calidadDelSueño *calidad)
+{
+    int minimo, maximo;
+    minimo[12] = {0,0,0,0,0,0,0,0,0,0,0,0};
+    maximo[12] = {0,0,0,0,0,0,0,0,0,0,0,0};
+
+    minMax(minimo, maximo, *lista, *calidad);
+
+    celdaEstudiantes *aux;
+    aux = lista->primero;
+
+    while (aux != NULL)
+    {
+        aux->dato.edad = (aux->dato.edad - minimo[0]) / (maximo[0] - minimo[0]);
+        aux->dato.genero = (aux->dato.genero - minimo[1]) / (maximo[1] - minimo[1]);
+        aux->dato.año_universidad = (aux->dato.año_universidad - minimo[2]) / (maximo[2] - minimo[2]);
+        aux->dato.horas_sueño = (aux->dato.horas_sueño - minimo[3]) / (maximo[3] - minimo[3]);
+        aux->dato.horas_estudio = (aux->dato.horas_estudio - minimo[4]) / (maximo[4] - minimo[4]);
+        aux->dato.horas_pantalla = (aux->dato.horas_pantalla - minimo[5]) / (maximo[5] - minimo[5]);
+        aux->dato.cafeina = (aux->dato.cafeina - minimo[6]) / (maximo[6] - minimo[6]);
+        aux->dato.actividad_fisica = (aux->dato.actividad_fisica - minimo[7]) / (maximo[7] - minimo[7]);
+        aux->dato.acostar_semana = (aux->dato.acostar_semana - minimo[8]) / (maximo[8] - minimo[8]);
+        aux->dato.acostar_finde = (aux->dato.acostar_finde - minimo[9]) / (maximo[9] - minimo[9]);
+        aux->dato.despertar_semana = (aux->dato.despertar_semana - minimo[10]) / (maximo[10] - minimo[10]);
+        aux->dato.desperar_finde = (aux->dato.desperar_finde - minimo[11]) / (maximo[11] - minimo[11]);
+
+        aux = aux->sig;
+    }
+
+    lista->dato.edad = (aux->dato.edad - minimo[0]) / (maximo[0] - minimo[0]);
+    lista->dato.genero = (aux->dato.genero - minimo[1]) / (maximo[1] - minimo[1]);
+    lista->dato.año_universidad = (aux->dato.año_universidad - minimo[2]) / (maximo[2] - minimo[2]);
+    lista->dato.horas_sueño = (aux->dato.horas_sueño - minimo[3]) / (maximo[3] - minimo[3]);
+    lista->dato.horas_estudio = (aux->dato.horas_estudio - minimo[4]) / (maximo[4] - minimo[4]);
+    lista->dato.horas_pantalla = (aux->dato.horas_pantalla - minimo[5]) / (maximo[5] - minimo[5]);
+    lista->dato.cafeina = (aux->dato.cafeina - minimo[6]) / (maximo[6] - minimo[6]);
+    lista->dato.actividad_fisica = (aux->dato.actividad_fisica - minimo[7]) / (maximo[7] - minimo[7]);
+    lista->dato.acostar_semana = (aux->dato.acostar_semana - minimo[8]) / (maximo[8] - minimo[8]);
+    lista->dato.acostar_finde = (aux->dato.acostar_finde - minimo[9]) / (maximo[9] - minimo[9]);
+    lista->dato.despertar_semana = (aux->dato.despertar_semana - minimo[10]) / (maximo[10] - minimo[10]);
+    lista->dato.desperar_finde = (aux->dato.desperar_finde - minimo[11]) / (maximo[11] - minimo[11]);
+}
 
 
 
