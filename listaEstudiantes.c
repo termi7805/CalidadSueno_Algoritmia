@@ -63,10 +63,16 @@ void eliminarDatoPrimero(listaEstudiantes *lista)
 
 listaEstudiantes cargarDatos()
 {
+    int i;
+    char fichero[100];
+    FILE *fd;
+
+    i = 1;
+
     listaEstudiantes = lista;
     iniciarLista(&lista);
+    calidadDelSueño nuevo;
 
-    calidadSueño nuevo;
     int edad;
     char genero;
     int año_universidad;
@@ -81,8 +87,6 @@ listaEstudiantes cargarDatos()
     float despertar_finde;
     int calidad_sueño;
 
-    char fichero[100];
-    FILE *fd;
     scanf ("%s", fichero);
     while ((fd = fopen(fichero, "r")) == NULL)
     {
@@ -90,9 +94,19 @@ listaEstudiantes cargarDatos()
         scanf("%s", fichero);
     }
 
-    //seguir
+    while (fscanf(fd, "%d %f %d %f %f %f %d %d %f %f %f %f %d", &nuevo.edad, &nuevo.genero, &nuevo.año_universidad, &nuevo.horas_sueño, &nuevo.horas_estudio, &nuevo.horas_pantalla, &nuevo.cafeina, &nuevo.actividad_fisica, &nuevo.acostar_semana, &nuevo.acostar_finde, &nuevo.despertar_semana, &nuevo.despertar_finde, &nuevo.calidad_sueño) != EOF)
+    {
+        printf("Dato %d: \n", i);
+        printf("%d %f %d %f %f %f %d %d %f %f %f %f %d\n", nuevo.edad, nuevo.genero, nuevo.año_universidad, nuevo.horas_sueño, nuevo.horas_estudio, nuevo.horas_pantalla, nuevo.cafeina, nuevo.actividad_fisica, nuevo.acostar_semana, nuevo.acostar_finde, nuevo.despertar_semana, nuevo.despertar_finde, nuevo.calidad_sueño);
+        i = i + 1;
 
+        añadirDato(&lista, nuevo);
+        fflush(fd);
+    }
 
+    fclose(fd);
+    return lista;
+}
 
 void inicializaMinMax (int min[20], int max[20], listaEstudiantes lista, calidadSueño calidad)
 {
@@ -133,35 +147,75 @@ void inicializaMinMax (int min[20], int max[20], listaEstudiantes lista, calidad
             maximo[0] = aux->dato.edad;
         }
         if (aux->dato.genero < minimo[1]){
-
-        if (aux->dato.genero > maximo[1])
-        if (aux->dato.año_universidad < minimo[2])
-        if (aux->dato.año_universidad > maximo[2])
-        if (aux->dato.horas_sueño < minimo[3])
-        if (aux->dato.horas_sueño > maximo[3])
-        if (aux->dato.horas_estudio < minimo[4])
-        if (aux->dato.horas_estudio > maximo[4])
-        if (aux->dato.horas_pantalla < minimo[5])
-        if (aux->dato.horas_pantalla > maximo[5])
-        if (aux->dato.cafeina < minimo[6])
-        if (aux->dato.cafeina > maximo[6])
-        if (aux->dato.actividad_fisica < minimo[7])
-        if (aux->dato.actividad_fisica > maximo[7])
-        if (aux->dato.acostar_semana < minimo[8])
-        if (aux->dato.acostar_semana > maximo[8])
-        if (aux->dato.acostar_finde < minimo[9])
-        if (aux->dato.acostar_finde > maximo[9])
-        if (aux->dato.despertar_semana < minimo[10])
-        if (aux->dato.despertar_semana > maximo[10])
-        if (aux->dato.desperar_finde < minimo[11])
-        if (aux->dato.desperar_finde > maximo[11])
+            minimo[1] = aux->dato.genero;
+        }
+        if (aux->dato.genero > maximo[1]){
+            maximo[1] = aux->dato.genero;
+        }
+        if (aux->dato.año_universidad < minimo[2]){
+            minimo[2] = aux->dato.año_universidad;
+        }
+        if (aux->dato.año_universidad > maximo[2]){
+            maximo[2] = aux->dato.año_universidad;
+        }
+        if (aux->dato.horas_sueño < minimo[3]){
+            minimo[3] = aux->dato.horas_sueño;
+        }
+        if (aux->dato.horas_sueño > maximo[3]){
+            maximo[3] = aux->dato.horas_sueño;
+        }
+        if (aux->dato.horas_estudio < minimo[4]){
+            minimo[4] = aux->dato.horas_estudio;
+        }
+        if (aux->dato.horas_estudio > maximo[4]){
+            maximo[4] = aux->dato.horas_estudio;
+        }
+        if (aux->dato.horas_pantalla < minimo[5]){
+            minimo[5] = aux->dato.horas_pantalla;
+        }
+        if (aux->dato.horas_pantalla > maximo[5]){
+            maximo[5] = aux->dato.horas_pantalla;
+        }
+        if (aux->dato.cafeina < minimo[6]){
+            minimo[6] = aux->dato.cafeina;
+        }
+        if (aux->dato.cafeina > maximo[6]){
+            maximo[6] = aux->dato.cafeina;
+        }
+        if (aux->dato.actividad_fisica < minimo[7]){
+            minimo[7] = aux->dato.actividad_fisica;
+        }
+        if (aux->dato.actividad_fisica > maximo[7]){
+            maximo[7] = aux->dato.actividad_fisica;
+        }
+        if (aux->dato.acostar_semana < minimo[8]){
+            minimo[8] = aux->dato.acostar_semana;
+        }
+        if (aux->dato.acostar_semana > maximo[8]){
+            maximo[8] = aux->dato.acostar_semana;
+        }
+        if (aux->dato.acostar_finde < minimo[9]){
+            minimo[9] = aux->dato.acostar_finde;
+        }
+        if (aux->dato.acostar_finde > maximo[9]){
+            maximo[9] = aux->dato.acostar_finde;
+        }
+        if (aux->dato.despertar_semana < minimo[10]){
+            minimo[10] = aux->dato.despertar_semana;
+        }
+        if (aux->dato.despertar_semana > maximo[10]){
+            maximo[10] = aux->dato.despertar_semana;
+        }
+        if (aux->dato.desperar_finde < minimo[11]){
+            minimo[11] = aux->dato.despertar_finde;
+        }
+        if (aux->dato.desperar_finde > maximo[11]){
+            maximo[11] = aux->dato.despertar_finde;
+        }
 
         aux = aux->sig;
     }
 }
-
-
-
 
 void normalizar(listaEstudiantes *lista, calidadDelSueño *calidad)
 {
