@@ -1,5 +1,5 @@
 
-#include "calidadSueño.h"
+#include "CalidadSueño.h"
 
 typedef struct calidadDelSueño tipoElementoLista;
 
