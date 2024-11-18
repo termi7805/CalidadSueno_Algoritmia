@@ -40,7 +40,49 @@ bool deberiaestarenlalista(listaOrdenadaVecinos l, float d){
 
 int mediaVecinos(listaOrdenadaVecinos l){
 	
+	if (estavacia(l)){
+		
+		printf("ERROR: LA LISTA ESTA VACIA");
+		exit(-1);
+	}
 	
+	int tipo[10] = {0};
+	int distancia[10] = {0};
+	celdavecino *aux = l.primero;
+	
+	while(aux != NULL){
+		
+		int nivel = aux->calidadDelSueño->calidad_sueño;
+		
+		if (nivel >= 1 && nivel <= 10){
+			
+			tipo[nivel-1]++;
+			distancia[nivel-1] += aux->distancia;
+			
+		}
+		
+		aux = aux->siguiente;
+	}
+	
+	int tipoPredominante = 0;
+	for (int i = 1; i<10; i++){
+		
+		if(tipo[i] > tipo[tipoPredominante]){
+				
+			tipoPredominante = i;
+		}
+		
+		else if (tipo[i] == tipo[tipoPredominante]){
+			
+			if(distancia[i] > distancia[tipoPredominante]){
+				
+				tipoPredominante = i;
+			}
+		}
+			
+	}
+	
+	return tipoPredominante + 1;
 }
 
 
