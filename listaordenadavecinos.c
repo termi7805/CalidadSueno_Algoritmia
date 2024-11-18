@@ -1,5 +1,9 @@
 #include "listaEstudiantes.h"
 #include "listaordenadavecinos.h"
+#include "CalidadSueño.h"
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 void iniciarlistavecinos(listaOrdenadaVecinos *l){
 	
@@ -34,7 +38,7 @@ bool deberiaestarenlalista(listaOrdenadaVecinos l, float d){
 	
 	else{
 		
-		return (distancia < l.ultimo->distancia);
+		return (d < l.ultimo->distancia);
 	}
 }
 
@@ -85,7 +89,116 @@ int mediaVecinos(listaOrdenadaVecinos l){
 	return tipoPredominante + 1;
 }
 
+void insertar(listaOrdenadaVecinos *l, celdavecino c){
+	
+    celdavecino * nueva = (celdavecino*)malloc(sizeof(celdavecino));
+    *nueva = c;
+    
+    if(estavacia(*l)){
+        l->primero = nueva;
+        l->ultimo = nueva; 
+        nueva->siguiente = NULL;
+        l->numerovecinos++;
+    }
+    else {
+        if(estallena(*l)){
+            if(deberiaestarenlalista(*l, c.distancia) ){
+				
+                eliminarporposicion(l, l->numerovecinos);
+                insertar(l, c);
+            }
+        }
+        else{
+            if (nueva->distancia <= l->primero->distancia){
+				
+                nueva->siguiente = l->primero;
+				l->primero = nueva;
+				l->numerovecinos++;
+			}
+			else if (nueva->distancia >= l->ultimo->distancia){
+				
+                l->ultimo->siguiente = nueva;
+                l->ultimo = nueva;
+				nueva->siguiente = NULL;
+				l->numerovecinos++;
+			}
+            else{	  
+				
+                celdavecino * ant = NULL;
+				celdavecino * aux = l->primero;
+				while (aux != NULL && aux->distancia < (nueva->distancia)){
+					
+					ant = aux;
+					aux = aux->siguiente;
+				}
+				
+				nueva->siguiente = aux;
+				if (ant != NULL){
+					
+					ant->siguiente = nueva;
+				}
+				l->numerovecinos++;
+			}
+        }
+    }
+}
 
+void eliminarporposicion(listaOrdenadaVecinos *l ,int pos){
+
+	int i = 0;
+	celdavecino *aux = l->primero;
+	celdavecino *ant = NULL;
+	pos--;
+	while(aux->siguiente != NULL && aux != NULL){
+		ant = aux;
+		aux = aux->siguiente;
+		i++;
+	}
+
+	if(ant == NULL){
+		
+		l->primero = NULL;
+		l->ultimo = NULL;
+		free(aux);
+		l->numerovecinos--;
+	}
+	else{
+		
+		l->ultimo = ant
+		l->ultimo->siguiente = NULL;
+		free(aux);
+		l->numerovecinos--;
+	}
+}	
+
+listaOrdenadaVecinos distanciaminima(calidadDelSueño sueño,listaEstudiantes BasedeDatos, int K){
+	
+	listaOrdenadaVecinos vecinoscercanos;
+	Nodo * aux;
+	celdavecino nueva;
+	iniciarlistavecinos(&vecinoscercanos);
+	cambiarK(&vecinoscercanos, K);
+	aux = BasedeDatos.primero;
+	while (aux != NULL){
+		
+		nueva.distancia = distancia(sueño, aux->calidad_sueño);
+		if(deberiaestarenlalista(vecinoscercanos, nueva.distancia)){
+			
+			nueva.id = aux->id - 1;
+			nueva.distancia = distancia(sueño, aux->calidad_sueño);
+			nueva.calidadDelSueño = aux;
+			insertar(&vecinoscercanos, nueva);
+		}
+		aux = aux->siguiente;
+	}
+	return vecinoscercanos;
+}
+
+float distancia(calidadDelSueño a, calidadDelSueño b){
+	
+	return fabs(a.calidad_sueño - b.calidad_sueño);
+}
+	
 
 
 
