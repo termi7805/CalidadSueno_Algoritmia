@@ -7,7 +7,7 @@
 typedef struct celdavecino{
     int id;
     float distancia;
-    Nodo * nivelEstres;
+    Nodo * calidadDelSueño;
     struct celdavecino * siguiente;
 }celdavecino;
 
