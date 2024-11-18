@@ -40,4 +40,3 @@ listaOrdenadaVecinos distanciaminima(calidadDelSueño ,listaEstudiantes , int);
 float distancia(calidadDelSueño, calidadDelSueño);
 
 
-NivelEstres
