@@ -1,41 +1,39 @@
-#include <stdio.h>
-
-
 #include "listaEstudiantes.h"
 
+#include <stdio.h>
 
 typedef struct celdavecino{
     int id;
     float distancia;
-    Nodo * calidadDelSueño;
-    struct celdavecino * siguiente;
+    celdaEstudiantes * calidadDelSueño;
+    struct celdaVecino * siguiente;
 }celdavecino;
 
 typedef struct listaOrdenadaVecinos{
-    celdavecino* primero;
-    celdavecino* ultimo;
-    int numerovecinos;
+    celdaVecino* primero;
+    celdaVecino* ultimo;
+    int numeroVecinos;
     int maximo;
 }listaOrdenadaVecinos;
 
 
-void iniciarlistavecinos(listaOrdenadaVecinos *);
+void iniciarListaVecinos(listaOrdenadaVecinos *);
 
-void cambiarK(listaOrdenadaVecinos *,int );
+void cambiarK(listaOrdenadaVecinos *, int);
 
 bool estavacia(listaOrdenadaVecinos);
 
 bool estallena(listaOrdenadaVecinos);
 
-bool deberiaestarenlalista(listaOrdenadaVecinos , float );
+bool deberiaEstarenLaLista(listaOrdenadaVecinos , float);
 
 int mediaVecinos(listaOrdenadaVecinos);
 
-void insertar(listaOrdenadaVecinos *, celdavecino);
+void insertar(listaOrdenadaVecinos *, celdaVecino);
 
-void eliminarporposicion(listaOrdenadaVecinos *,int);
+void eliminarConPos(listaOrdenadaVecinos *, int);
 
-listaOrdenadaVecinos distanciaminima(calidadDelSueño ,listaEstudiantes , int);
+listaOrdenadaVecinos distanciaMinima(calidadDelSueño ,listaEstudiantes , int);
 
 float distancia(calidadDelSueño, calidadDelSueño);
 
