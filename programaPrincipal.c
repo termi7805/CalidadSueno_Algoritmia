@@ -20,7 +20,6 @@ int main(void)
 
     int opcion, numVecinos_K;
 
-
     do
     {
         printf("------------MENU------------\n");
@@ -35,17 +34,16 @@ int main(void)
         printf("\t9 - Imprimir dataset\n");
         printf("\t10 - Salir.\n");
 
-
-
-
         printf("Escoja una opcion: ");
         scanf("%d",&opcion);
 
 		switch(opcion)
         {
             case 1:
-                printf("Por favor introduce el nombre del dataset\n");  //acabado en txt ¿?
-				lista = cargarDatos();
+                char fichero[100];
+                printf("Por favor introduce el nombre del dataset: ");
+                scanf ("%s", fichero);
+				lista = cargarDatos(fichero);
                 printf("El dataset ha sido cargado correctamente\n\n");
 
             case 2:
@@ -114,8 +112,6 @@ int main(void)
 
 				break;
 
-
-
             default:
                 printf("\nERROR: La opcion seleccionada no esta entre las opciones, vuelva a intentarlo.\n");
 
@@ -124,9 +120,7 @@ int main(void)
 
 
 
-    }while(opcion != );
-
-
+    } while(1);
 
     return 0;
 }

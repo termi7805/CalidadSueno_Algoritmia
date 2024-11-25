@@ -19,7 +19,7 @@ bool esListaVacia(listaEstudiantes);
 void añadirDato(listaEstudiantes *, tipoElementoLista);
 void eliminarDatoPrimero(listaEstudiantes *);
 listaEstudiantes cargarDatos();
-void inicializaMinMax (int, int, listaEstudiantes, calidadDelSueño);
+void inicializaMinMax (int *, int *, listaEstudiantes, calidadDelSueño);
 void normalizar(listaEstudiantes *, calidadDelSueño *);
 void imprimeDato(tipoElementoLista);
 void imprimeListaEntera(listaEstudiantes);
