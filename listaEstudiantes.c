@@ -61,7 +61,7 @@ void eliminarDatoPrimero(listaEstudiantes *lista)
     }
 }
 
-listaEstudiantes cargarDatos()
+listaEstudiantes cargarDatos()  //para cargar el dataset
 {
     int i;
     char fichero[100];
@@ -69,7 +69,7 @@ listaEstudiantes cargarDatos()
 
     i = 1;
 
-    listaEstudiantes = lista;
+    listaEstudiantes lista;
     iniciarLista(&lista);
     calidadDelSueño nuevo;
 
@@ -94,21 +94,21 @@ listaEstudiantes cargarDatos()
         scanf("%s", fichero);
     }
 
-    while (fscanf(fd, "%d %f %d %f %f %f %d %d %f %f %f %f %d", &nuevo.edad, &nuevo.genero, &nuevo.año_universidad, &nuevo.horas_sueño, &nuevo.horas_estudio, &nuevo.horas_pantalla, &nuevo.cafeina, &nuevo.actividad_fisica, &nuevo.acostar_semana, &nuevo.acostar_finde, &nuevo.despertar_semana, &nuevo.despertar_finde, &nuevo.calidad_sueño) != EOF)
+    while (fscanf(fd, "%d %d %d %f %f %f %f %d %f %f %f %f %d", &nuevo.edad, &nuevo.genero, &nuevo.año_universidad, &nuevo.horas_sueño, &nuevo.horas_estudio, &nuevo.horas_pantalla, &nuevo.cafeina, &nuevo.actividad_fisica, &nuevo.acostar_semana, &nuevo.acostar_finde, &nuevo.despertar_semana, &nuevo.despertar_finde, &nuevo.calidad_sueño) != EOF)
     {
         printf("Dato %d: \n", i);
-        printf("%d %f %d %f %f %f %d %d %f %f %f %f %d\n", nuevo.edad, nuevo.genero, nuevo.año_universidad, nuevo.horas_sueño, nuevo.horas_estudio, nuevo.horas_pantalla, nuevo.cafeina, nuevo.actividad_fisica, nuevo.acostar_semana, nuevo.acostar_finde, nuevo.despertar_semana, nuevo.despertar_finde, nuevo.calidad_sueño);
+        printf("%d %d %d %f %f %f %f %d %f %f %f %f %d\n", nuevo.edad, nuevo.genero, nuevo.año_universidad, nuevo.horas_sueño, nuevo.horas_estudio, nuevo.horas_pantalla, nuevo.cafeina, nuevo.actividad_fisica, nuevo.acostar_semana, nuevo.acostar_finde, nuevo.despertar_semana, nuevo.despertar_finde, nuevo.calidad_sueño);
         i = i + 1;
 
-        añadirDato(&lista, nuevo);
-        fflush(fd);
+        añadirDato(&lista, nuevo); //los añadimos 1 por 1 usando la funcion que hemos creado antes
+        fflush(fd); //explicar porque lo usamos
     }
 
     fclose(fd);
     return lista;
 }
 
-void inicializaMinMax (int min[20], int max[20], listaEstudiantes lista, calidadSueño calidad)
+void inicializaMinMax (int min[20], int max[20], listaEstudiantes lista, calidadDelSueño calidad) //para normalizar los valores
 {
     celdaEstudiantes *aux;
     aux = lista.primero;
@@ -134,11 +134,11 @@ void inicializaMinMax (int min[20], int max[20], listaEstudiantes lista, calidad
     minimo[9] = calidad.acostar_finde;
     maximo[9] = calidad.acostar_finde;
     minimo[10] = calidad.despertar_semana;
-    maximo[10] = calidad.desepertar_semana;
+    maximo[10] = calidad.despertar_semana;
     minimo[11] = calidad.despertar_finde;
     maximo[11] = calidad.despertar_finde;
 
-    while (aux != NULL)
+    while (aux != NULL)  //reocorremos toda la lista para encontrar los valores maximos y minimos
     {
         if (aux->dato.edad < minimo[0]){
             minimo[0] = aux->dato.edad;
@@ -206,10 +206,10 @@ void inicializaMinMax (int min[20], int max[20], listaEstudiantes lista, calidad
         if (aux->dato.despertar_semana > maximo[10]){
             maximo[10] = aux->dato.despertar_semana;
         }
-        if (aux->dato.desperar_finde < minimo[11]){
+        if (aux->dato.despertar_finde < minimo[11]){
             minimo[11] = aux->dato.despertar_finde;
         }
-        if (aux->dato.desperar_finde > maximo[11]){
+        if (aux->dato.despertar_finde > maximo[11]){
             maximo[11] = aux->dato.despertar_finde;
         }
 
@@ -228,7 +228,7 @@ void normalizar(listaEstudiantes *lista, calidadDelSueño *calidad)
     celdaEstudiantes *aux;
     aux = lista->primero;
 
-    while (aux != NULL)
+    while (aux != NULL)  //normalizamos
     {
         aux->dato.edad = (aux->dato.edad - minimo[0]) / (maximo[0] - minimo[0]);
         aux->dato.genero = (aux->dato.genero - minimo[1]) / (maximo[1] - minimo[1]);
@@ -241,10 +241,11 @@ void normalizar(listaEstudiantes *lista, calidadDelSueño *calidad)
         aux->dato.acostar_semana = (aux->dato.acostar_semana - minimo[8]) / (maximo[8] - minimo[8]);
         aux->dato.acostar_finde = (aux->dato.acostar_finde - minimo[9]) / (maximo[9] - minimo[9]);
         aux->dato.despertar_semana = (aux->dato.despertar_semana - minimo[10]) / (maximo[10] - minimo[10]);
-        aux->dato.desperar_finde = (aux->dato.desperar_finde - minimo[11]) / (maximo[11] - minimo[11]);
+        aux->dato.despertar_finde = (aux->dato.despertar_finde - minimo[11]) / (maximo[11] - minimo[11]);
 
         aux = aux->sig;
     }
+    //falta el ultimo dato de la lista? (lista->dato es lo mismo que lista->ultimo->dato?)
 
     lista->dato.edad = (aux->dato.edad - minimo[0]) / (maximo[0] - minimo[0]);
     lista->dato.genero = (aux->dato.genero - minimo[1]) / (maximo[1] - minimo[1]);
@@ -257,7 +258,7 @@ void normalizar(listaEstudiantes *lista, calidadDelSueño *calidad)
     lista->dato.acostar_semana = (aux->dato.acostar_semana - minimo[8]) / (maximo[8] - minimo[8]);
     lista->dato.acostar_finde = (aux->dato.acostar_finde - minimo[9]) / (maximo[9] - minimo[9]);
     lista->dato.despertar_semana = (aux->dato.despertar_semana - minimo[10]) / (maximo[10] - minimo[10]);
-    lista->dato.desperar_finde = (aux->dato.desperar_finde - minimo[11]) / (maximo[11] - minimo[11]);
+    lista->dato.despertar_finde = (aux->dato.despertar_finde - minimo[11]) / (maximo[11] - minimo[11]);
 }
 
 
@@ -265,12 +266,12 @@ void normalizar(listaEstudiantes *lista, calidadDelSueño *calidad)
 void imprimeDato(tipoElementoLista e)
 {
     printf("Edad: %d\n", e.edad);
-    printf("Genero: %s\n", e.genero);
+    printf("Genero: %d\n", e.genero);
     printf("Año universitario: %d\n", e.año_universidad);
     printf("Horas de sueño: %f\n", e.horas_sueño);
     printf("Horas de estudio: %f\n", e.horas_estudio);
     printf("Tiempo con pantallas: %f\n", e.horas_pantalla);
-    printf("Cafeina tomada: %d\n", e.cafeina);
+    printf("Cafeina tomada: %f\n", e.cafeina);
     printf("Actividad fisica realizada: %d\n", e.actividad_fisica);
     printf("Hora de acostarse entre semana: %f\n", e.acostar_semana);
     printf("Hora de acostarse en fin de semana: %f\n", e.acostar_finde);
@@ -292,13 +293,13 @@ void imprimeListaEntera(listaEstudiantes lista)
         printf("Horas sueño: %f", aux->e.horas_sueño);
         printf("Horas estudio: %f", aux->e.horas_estudio);
         printf("Tiempo pantallas: %f", aux->e.horas_pantalla);
-        printf("Cafeina: %d", aux->e.cafeina);
+        printf("Cafeina: %f", aux->e.cafeina);
         printf("Actividad fisica: %d", aux->e.actividad_fisica);
         printf("Acostarse semana: %f", aux->e.acostar_semana);
         printf("Acostarse finde: %f", aux->e.acostar_finde);
         printf("Despertarse semana: %f", aux->e.despertar_semana);
         printf("Despertarse finde: %f", aux->e.despertar_finde);
-         printf("Calidad de sueño: %d\n", aux->e.calidad_sueño);
+        printf("Calidad de sueño: %d\n", aux->e.calidad_sueño);
 
         aux = aux->sig;
     }

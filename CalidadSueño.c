@@ -1,28 +1,12 @@
 #include "CalidadSueño.h"
-#include <string.h>
 
 
-calidadDelSueño nuevoEstudiante
-(
-                                int edad,
-                                char *genero[10],
-                                int año_universidad,
-                                float horas_sueño,
-                                float horas_estudio,
-                                float horas_pantalla,
-                                float cafeina,
-                                int actividad_fisica,
-                                int calidad_sueño,
-                                float acostar_semana,
-                                float acostar_finde,
-                                float despertar_semana,
-                                float despertar_finde
-
-)
+calidadDelSueño nuevoEstudiante (int edad, int genero, int año_universidad, float horas_sueño, float horas_estudio, float horas_pantalla, float cafeina, int actividad_fisica, int calidad_sueño, float acostar_semana, float acostar_finde, float despertar_semana, float despertar_finde)
 {
     calidadDelSueño nuevo;
+
     nuevo.edad = edad;
-    strcpy(nuevo.genero, genero[10]);
+    nuevo.genero = genero;
     nuevo.año_universidad = año_universidad;
     nuevo.horas_sueño = horas_sueño;
     nuevo.horas_estudio = horas_estudio;
@@ -33,17 +17,16 @@ calidadDelSueño nuevoEstudiante
     nuevo.acostar_finde = acostar_finde;
     nuevo.despertar_semana = despertar_semana;
     nuevo.despertar_finde = despertar_finde;
+
     return nuevo;
 }
 
-
-
-bool suelo(calidadDelSueño cs)
+bool sueño(calidadDelSueño calidadSueño)
 {
-    return cs.calidad_sueño;
+    return calidadSueño.calidad_sueño;
 }
-void cambiarCalidad(calidadDelSueño *cs, int calidad)
+void cambiarCalidad(calidadDelSueño *calidadSueño, int calidad)
 {
-    cs->calidad_sueño = calidad;
+    calidadSueño->calidad_sueño = calidad;
 }
 
