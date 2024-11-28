@@ -9,13 +9,13 @@ void iniciarListaVecinos(listaOrdenadaVecinos *l)
 {
 	l->primero = NULL;
 	l->ultimo = NULL;
-	l->numerovecinos = 0;
+	l->numeroVecinos = 0;
 	l->maximo = 0;
 }
 
 void cambiarK(listaOrdenadaVecinos *l, int k)
 {
-	l->maximo = k;
+	l->maximo = k; //K: numero de vecinos que se quieren guardar
 }
 
 bool estavacia(listaOrdenadaVecinos l)
@@ -25,7 +25,7 @@ bool estavacia(listaOrdenadaVecinos l)
 
 bool estallena(listaOrdenadaVecinos l)
 {
-	return l.numerovecinos == l.maximo;
+	return l.numeroVecinos == l.maximo;
 }
 
 bool deberiaEstarEnLaLista(listaOrdenadaVecinos l, float distancia)
@@ -47,13 +47,13 @@ int mediaVecinos(listaOrdenadaVecinos l)
 	}
 	
 	int nivel;
-	int tipo[10] = {0,0,0,0,0,0,0,0,0,0};
-	int distancia[10] = {0,0,0,0,0,0,0,0,0};
-	celdavecino *aux = l.primero;
+	int tipo[10] = {0,0,0,0,0,0,0,0,0,0}; //Numero de vecinos por cada nivel de calidad de sueño
+	int distancia[10] = {0,0,0,0,0,0,0,0,0}; //Distancia total de los vecinos por cada nivel de calidad de sueño
+	celdaVecino *aux = l.primero;
 	
 	while(aux != NULL){
 		
-		nivel = aux->calidadDelSueño->calidad_sueño;
+		nivel = aux->estudiante->dato.calidad_sueño;
 		
 		if (nivel >= 1 && nivel <= 10)
 		{
@@ -64,16 +64,16 @@ int mediaVecinos(listaOrdenadaVecinos l)
 		aux = aux->siguiente;
 	}
 	
-	int tipoPredominante = 0;
+	int tipoPredominante = 0; //Nivel de calidad de sueño con mas frecuencia
 
-	for (int i = 1; i<10; i++){
+	for (int i = 1; i<10; i++){ 
 		
 		if(tipo[i] > tipo[tipoPredominante])
 		{
 			tipoPredominante = i;
 		}
 		
-		else if (tipo[i] == tipo[tipoPredominante])
+		else if (tipo[i] == tipo[tipoPredominante]) //En caso de empate, se elige el que tenga mayor distancia
 		{
 			if(distancia[i] > distancia[tipoPredominante])
 			{
@@ -100,7 +100,7 @@ void insertar(listaOrdenadaVecinos *l, celdaVecino c)
 
         if(estallena(*l)){
             if(deberiaEstarEnLaLista(*l, c.distancia) ){
-                eliminarConPos(l, l->numerovecinos);
+                eliminarConPos(l, l->numeroVecinos);
                 insertar(l, c);
             }
         }
@@ -110,7 +110,7 @@ void insertar(listaOrdenadaVecinos *l, celdaVecino c)
 
                 nueva->siguiente = l->primero;
 				l->primero = nueva;
-				l->numerovecinos++;
+				l->numeroVecinos++;
 			}
 			else if (nueva->distancia >= l->ultimo->distancia){
 
@@ -139,8 +139,8 @@ void insertar(listaOrdenadaVecinos *l, celdaVecino c)
 void eliminarConPos(listaOrdenadaVecinos *l, int pos)
 {
 	int i = 0;
-	celdavecino *aux = l->primero;
-	celdavecino *ant = NULL;
+	celdaVecino *aux = l->primero;
+	celdaVecino *ant = NULL;
 	pos = pos - 1;
 
 	while(aux->siguiente != NULL && aux != NULL){
@@ -158,39 +158,53 @@ void eliminarConPos(listaOrdenadaVecinos *l, int pos)
 	}
 	else{
 
-		l->ultimo = ant
+		l->ultimo = ant;
 		l->ultimo->siguiente = NULL;
 		free(aux);
 		l->numeroVecinos = l->numeroVecinos - 1;
 	}
 }	
 
-listaOrdenadaVecinos distanciaminima(calidadDelSueño sueño, listaEstudiantes datos, int K)
+listaOrdenadaVecinos distanciaminima(calidadDelSueño sueño, listaEstudiantes datos, int K) //Crea lista de K vecinos cercanos
 {
 	listaOrdenadaVecinos vecinosCercanos;
 	celdaEstudiantes * aux;
-	celdavecino nueva;
-	iniciarListaVecinos(&vecinoscercanos);
+	celdaVecino nueva;
+	iniciarListaVecinos(&vecinosCercanos);
 	cambiarK(&vecinosCercanos, K);
 	aux = datos.primero;
 	while (aux != NULL)
 	{
-		nueva.distancia = distancia(sueño, aux->calidad_sueño);
+		nueva.distancia = distancia(sueño, aux->dato);
 		if(deberiaEstarEnLaLista(vecinosCercanos, nueva.distancia))
 		{
 			nueva.id = aux->id - 1;
-			nueva.distancia = distancia(sueño, aux->calidad_sueño);
-			nueva.calidadDelSueño = aux;
+			nueva.distancia = distancia(sueño, aux->dato);
+			nueva.estudiante = aux;
 			insertar(&vecinosCercanos, nueva);
 		}
-		aux = aux->siguiente;
+		aux = aux->sig;
 	}
-	return vecinoscercanos;
+	return vecinosCercanos;
 }
 
-float distancia(calidadDelSueño a, calidadDelSueño b)
+float distancia(calidadDelSueño a, tipoElementoLista b) //Calcula la distancia euclidea entre dos elementos
 {
-	return fabs(a.calidad_sueño - b.calidad_sueño);  //no se si esta bien (si no hay que restar todos los valores 1 por 1)
+    float suma = 0;
+    suma += pow(a.año_universidad - b.año_universidad, 2);
+    suma += pow(a.edad - b.edad, 2);
+    suma += pow(a.genero - b.genero, 2);
+    suma += pow(a.actividad_fisica - b.actividad_fisica, 2);
+    suma += pow(a.calidad_sueño - b.calidad_sueño, 2);
+    suma += pow(a.acostar_semana - b.acostar_semana, 2);
+    suma += pow(a.acostar_finde - b.acostar_finde, 2);
+    suma += pow(a.despertar_semana - b.despertar_semana, 2);
+    suma += pow(a.despertar_finde - b.despertar_finde, 2);
+    suma += pow(a.horas_sueño - b.horas_sueño, 2);
+    suma += pow(a.horas_estudio - b.horas_estudio, 2);
+    suma += pow(a.horas_pantalla - b.horas_pantalla, 2);
+    suma += pow(a.cafeina - b.cafeina, 2);
+    return sqrt(suma);
 }
 	
 

@@ -21,10 +21,12 @@ calidadDelSueño nuevoEstudiante (int edad, int genero, int año_universidad, fl
     return nuevo;
 }
 
+//Revisar si se usa
 bool sueño(calidadDelSueño calidadSueño)
 {
     return calidadSueño.calidad_sueño;
 }
+//Revisar si se usa
 void cambiarCalidad(calidadDelSueño *calidadSueño, int calidad)
 {
     calidadSueño->calidad_sueño = calidad;

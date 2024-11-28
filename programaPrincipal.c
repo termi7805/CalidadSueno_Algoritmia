@@ -47,16 +47,16 @@ int main(void)
                 printf("El dataset ha sido cargado correctamente\n\n");
 
             case 2:
-                leerCalidadDelSueño(&calidadDelSueño);
+                leerCalidadDelSueño(&CalidadDelSueño);
                 printf("Se ha cargado la calidad del sueño\n\n");
 
             case 3:
-                normalizar(&lista, &calidadDelSueño);
-                printf("Datos normalizados\n\n"):
+                normalizar(&lista, &CalidadDelSueño);
+                printf("Datos normalizados\n\n");
 
             case 4:
                 printf("Introduce un valor para k (k > 0) que representa el numero de vecinos: \n");
-                scanf("%d", &numVecinos_K)
+                scanf("%d", &numVecinos_K);
 
                 while(numVecinos_K <= 0)
                 {
@@ -68,14 +68,14 @@ int main(void)
 
             case 5:
                 iniciarlistavecinos(&listaVecinos);
-                listaVecinos = distanciaminima(calidadDelSueño, lista, numVecinos_K);
+                listaVecinos = distanciaminima(CalidadDelSueño, lista, numVecinos_K);
                 determinarCalidadSueño(&listaVecinos, &CalidadDelSueño);
                 imprimirResultados(CalidadDelSueño, listaVecinos);
 
                 printf("\n\n");
 
             case 6:
-                añadirDato(&lista, &calidadDelSueño);
+                añadirDato(&lista, &CalidadDelSueño);
 
                 printf("\n\n");
 
@@ -101,7 +101,7 @@ int main(void)
                     borrar = borrar->siguiente;
                 }
 
-                celdavecino *vecinito;
+                celdaVecino *vecinito;
 
                 while (!estavacia(listaVecinos))
                 {
@@ -166,7 +166,7 @@ void leeNivelEstres(NivelEstres * CS)
     scanf("%f", &CS -> cafeina);
     printf("\n");
 
-    printf("Introduce cuanta actividad fisica ha hecho (0 = Nada / 100 = Mucha): ")
+    printf("Introduce cuanta actividad fisica ha hecho (0 = Nada / 100 = Mucha): ");
     scanf("%d", &CS -> actividad_fisica);
     printf("\n");
 
@@ -211,12 +211,12 @@ void determinarCalidadSueño(listaOrdenadaVecinos l, calidadDelSueño *CS)
 void imprimirResultados(calidadDelSueño CS, listaOrdenadaVecinos l)
 {
     printf("El nivel de calidad de sueño a comprobar ha resultado ser: %d\n", mediaVecinos(l));
-    celdavecino * auxiliar;
+    celdaVecino * auxiliar;
     auxiliar = l.primero;
     int i = 1;
     while (auxiliar != NULL){
         printf("La distancia a la calidad de sueño %d mas cercano ha sido %f y en el dataset pertenece a la posicion %d: \n", i, auxiliar->distancia,  auxiliar ->id);
-        imprimeDato(auxiliar->celdaEstudiantes->dato);
+        imprimeDato(auxiliar->estudiante->dato);
         auxiliar = auxiliar -> siguiente;
         i++;
         printf ("----------------------------------------------------------------------------------\n");

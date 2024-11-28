@@ -5,9 +5,9 @@
 typedef struct celdavecino{
     int id;
     float distancia;
-    celdaEstudiantes * calidadDelSueño;
-    struct celdaVecino * siguiente;
-}celdavecino;
+    celdaEstudiantes * estudiante;
+    celdaVecino * siguiente;
+}celdaVecino;
 
 typedef struct listaOrdenadaVecinos{
     celdaVecino* primero;
@@ -33,8 +33,8 @@ void insertar(listaOrdenadaVecinos *, celdaVecino);
 
 void eliminarConPos(listaOrdenadaVecinos *, int);
 
-listaOrdenadaVecinos distanciaMinima(calidadDelSueño ,listaEstudiantes , int);
+listaOrdenadaVecinos distanciaMinima(calidadDelSueño, listaEstudiantes, int);
 
-float distancia(calidadDelSueño, calidadDelSueño);
+float distancia(calidadDelSueño, tipoElementoLista);
 
 
