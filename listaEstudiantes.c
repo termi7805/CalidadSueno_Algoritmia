@@ -64,6 +64,8 @@ listaEstudiantes cargarDatos(char fichero[100])  //para cargar el dataset
 {
     int i = 1;
     FILE *fd;
+    char generoStr[10];
+    char añoUniStr[30];
 
     listaEstudiantes lista;
     iniciarLista(&lista);
@@ -83,17 +85,37 @@ listaEstudiantes cargarDatos(char fichero[100])  //para cargar el dataset
     float despertar_finde;
     int calidad_sueño;
     */
+
     while ((fd = fopen(fichero, "r")) == NULL)
     {
         printf("Error al abrir el fichero, introduce el nombre correctamente: ");
         scanf("%s", fichero);
     }
+    char linea[400];
+    fgets(linea, sizeof(linea), fd); //saltar la primera linea porque creo que son cabeceras
 
-    while (fscanf(fd, "%d %d %d %f %f %f %f %d %f %f %f %f %d", &nuevo.edad, &nuevo.genero, &nuevo.año_universidad, &nuevo.horas_sueño, &nuevo.horas_estudio, &nuevo.horas_pantalla, &nuevo.cafeina, &nuevo.actividad_fisica, &nuevo.acostar_semana, &nuevo.acostar_finde, &nuevo.despertar_semana, &nuevo.despertar_finde, &nuevo.calidad_sueño) != EOF)
+    while (fscanf(fd, "%d %d %s %s %f %f %f %d %d %d %f %f %f %f", &nuevo.id, &nuevo.edad, generoStr, añoUniStr, &nuevo.horas_sueño, &nuevo.horas_estudio, &nuevo.horas_pantalla, &nuevo.cafeina, &nuevo.actividad_fisica, &nuevo.calidad_sueño, &nuevo.acostar_semana, &nuevo.acostar_finde, &nuevo.despertar_semana, &nuevo.despertar_finde) != EOF)
     {
         printf("Dato %d: \n", i);
-        printf("%d %d %d %f %f %f %f %d %f %f %f %f %d\n", nuevo.edad, nuevo.genero, nuevo.año_universidad, nuevo.horas_sueño, nuevo.horas_estudio, nuevo.horas_pantalla, nuevo.cafeina, nuevo.actividad_fisica, nuevo.acostar_semana, nuevo.acostar_finde, nuevo.despertar_semana, nuevo.despertar_finde, nuevo.calidad_sueño);
+        printf("%d %d %s %s %f %f %f %d %d %d %f %f %f %f\n", nuevo.id, nuevo.edad, generoStr, añoUniStr, nuevo.horas_sueño, nuevo.horas_estudio, nuevo.horas_pantalla, nuevo.cafeina, nuevo.actividad_fisica, nuevo.calidad_sueño, nuevo.acostar_semana, nuevo.acostar_finde, nuevo.despertar_semana, nuevo.despertar_finde);
         i = i + 1;
+
+        if(generoStr[0] == 'M')
+            nuevo.genero = 0;
+        else if(generoStr[0] == 'F')
+            nuevo.genero = 1;
+        else
+            nuevo.genero = 2;
+
+
+        if(añoUniStr[0] == '1')
+            nuevo.año_universidad = 1;
+        else if(añoUniStr[0] == '2')
+            nuevo.año_universidad = 2;
+        else if(añoUniStr[0] == '3')
+            nuevo.año_universidad = 3;
+        else
+            nuevo.año_universidad = 4;
 
         añadirDato(&lista, nuevo); //los añadimos 1 por 1 usando la funcion que hemos creado antes
     }
@@ -102,7 +124,7 @@ listaEstudiantes cargarDatos(char fichero[100])  //para cargar el dataset
     return lista;
 }
 
-void inicializaMinMax (int minimo[12], int maximo[12], listaEstudiantes lista, calidadDelSueño calidad) //para normalizar los valores
+void inicializaMinMax (int *minimo, int *maximo, listaEstudiantes lista, calidadDelSueño calidad) //para normalizar los valores
 {
     celdaEstudiantes* aux = lista.primero;
     int listaAux[12] = {calidad.edad, calidad.genero, calidad.año_universidad, calidad.horas_sueño, calidad.horas_estudio, calidad.horas_pantalla, calidad.cafeina, calidad.actividad_fisica, calidad.acostar_semana, calidad.acostar_finde, calidad.despertar_semana, calidad.despertar_finde};
@@ -217,7 +239,7 @@ void imprimeDato(tipoElementoLista e)
     printf("Horas de sueño: %f\n", e.horas_sueño);
     printf("Horas de estudio: %f\n", e.horas_estudio);
     printf("Tiempo con pantallas: %f\n", e.horas_pantalla);
-    printf("Cafeina tomada: %f\n", e.cafeina);
+    printf("Cafeina tomada: %d\n", e.cafeina);
     printf("Actividad fisica realizada: %d\n", e.actividad_fisica);
     printf("Hora de acostarse entre semana: %f\n", e.acostar_semana);
     printf("Hora de acostarse en fin de semana: %f\n", e.acostar_finde);
@@ -234,12 +256,12 @@ void imprimeListaEntera(listaEstudiantes lista)
     while (aux != NULL)
     {
         printf("Edad: %d\n", aux->dato.edad);
-        printf("Genero: %s\n", aux->dato.genero);
+        printf("Genero: %d\n", aux->dato.genero);
         printf("Curso: %d\n", aux->dato.año_universidad);
         printf("Horas sueño: %f\n", aux->dato.horas_sueño);
         printf("Horas estudio: %f\n", aux->dato.horas_estudio);
         printf("Tiempo pantallas: %f\n", aux->dato.horas_pantalla);
-        printf("Cafeina: %f\n", aux->dato.cafeina);
+        printf("Cafeina: %d\n", aux->dato.cafeina);
         printf("Actividad fisica: %d\n", aux->dato.actividad_fisica);
         printf("Acostarse semana: %f\n", aux->dato.acostar_semana);
         printf("Acostarse finde: %f\n", aux->dato.acostar_finde);

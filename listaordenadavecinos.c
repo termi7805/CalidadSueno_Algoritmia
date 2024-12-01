@@ -165,7 +165,7 @@ void eliminarConPos(listaOrdenadaVecinos *l, int pos)
 	}
 }	
 
-listaOrdenadaVecinos distanciaminima(calidadDelSueño sueño, listaEstudiantes datos, int K) //Crea lista de K vecinos cercanos
+listaOrdenadaVecinos distanciaMinima(calidadDelSueño sueño, listaEstudiantes datos, int K) //Crea lista de K vecinos cercanos
 {
 	listaOrdenadaVecinos vecinosCercanos;
 	celdaEstudiantes * aux;

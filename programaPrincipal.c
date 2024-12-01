@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "CalidadSueño.h"
 #include "listaEstudiantes.h"
@@ -9,7 +10,7 @@ void leerCalidadDelSueño(calidadDelSueño *);
 void determinarCalidadSueño(listaOrdenadaVecinos , calidadDelSueño *);
 void imprimirResultados(calidadDelSueño, listaOrdenadaVecinos);
 void compruebaDatos(listaEstudiantes *,int );
-void depuraListaEstudiantes(listaEstudiantes*,int);
+//void depuraListaEstudiantes(listaEstudiantes*,int);
 
 
 int main(void)
@@ -67,25 +68,25 @@ int main(void)
                 printf("\n\n");
 
             case 5:
-                iniciarlistavecinos(&listaVecinos);
-                listaVecinos = distanciaminima(CalidadDelSueño, lista, numVecinos_K);
-                determinarCalidadSueño(&listaVecinos, &CalidadDelSueño);
+                iniciarListaVecinos(&listaVecinos);
+                listaVecinos = distanciaMinima(CalidadDelSueño, lista, numVecinos_K);
+                determinarCalidadSueño(listaVecinos, &CalidadDelSueño);
                 imprimirResultados(CalidadDelSueño, listaVecinos);
 
                 printf("\n\n");
 
             case 6:
-                añadirDato(&lista, &CalidadDelSueño);
+                añadirDato(&lista, CalidadDelSueño);
 
                 printf("\n\n");
 
-            case 7:
+            /*case 7:
                 compruebaDatos(&lista,numVecinos_K);
-                printf("\n\n");
+                printf("\n\n");*/
 
-            case 8:
+            /*case 8:
                 depuraListaEstudiantes(&lista,numVecinos_K);
-                printf("\n\n");
+                printf("\n\n");*/
 
             case 9:
                 imprimeListaEntera(lista);
@@ -93,7 +94,7 @@ int main(void)
 
             case 10:
                 printf("\n\tSaliendo del programa\n");
-                Nodo *borrar;
+                /*celdaEstudiantes *borrar;
                 borrar = lista.primero;
                 while (borrar != NULL)
                 {
@@ -110,15 +111,11 @@ int main(void)
                     free(vecinito);
                 }
 
-				break;
+				break;*/
 
             default:
                 printf("\nERROR: La opcion seleccionada no esta entre las opciones, vuelva a intentarlo.\n");
-
-
         }
-
-
 
     } while(1);
 
@@ -126,11 +123,9 @@ int main(void)
 }
 
 
-
-void leeNivelEstres(NivelEstres * CS)
+void leerCalidadDelSueño(calidadDelSueño * CS)
 {
     int horas, minutos;
-    float tiempo;
 
     printf("Introduce su edad: ");
     scanf("%d",&CS -> edad);
@@ -163,7 +158,7 @@ void leeNivelEstres(NivelEstres * CS)
     printf("\n");
 
     printf("Introduce los gramos de cafeina que ha tomado: ");
-    scanf("%f", &CS -> cafeina);
+    scanf("%d", &CS -> cafeina);
     printf("\n");
 
     printf("Introduce cuanta actividad fisica ha hecho (0 = Nada / 100 = Mucha): ");
@@ -196,10 +191,6 @@ void leeNivelEstres(NivelEstres * CS)
 
 }
 
-
-
-
-
 void determinarCalidadSueño(listaOrdenadaVecinos l, calidadDelSueño *CS)
 {
     CS -> calidad_sueño = mediaVecinos(l);
@@ -225,25 +216,16 @@ void imprimirResultados(calidadDelSueño CS, listaOrdenadaVecinos l)
 }
 
 
-void compruebaDatos(listaEstudiantes *l,int K)
+/*void compruebaDatos(listaEstudiantes *l,int K)
 {
 
-
-
-
 }
-
 
 void depuraListaEstudiantes(listaEstudiantes*,int)
 {
     listaEstudiantes listaAuxiliar;
     listaOrdenadaVecinos vecinos;
-
-
-
-
-
-}
+}*/
 
 
 

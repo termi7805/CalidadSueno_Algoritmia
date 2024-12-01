@@ -1,10 +1,11 @@
 #include "CalidadSueño.h"
 
 
-calidadDelSueño nuevoEstudiante (int edad, int genero, int año_universidad, float horas_sueño, float horas_estudio, float horas_pantalla, float cafeina, int actividad_fisica, int calidad_sueño, float acostar_semana, float acostar_finde, float despertar_semana, float despertar_finde)
+calidadDelSueño nuevoEstudiante (int id, int edad, int genero, int año_universidad, float horas_sueño, float horas_estudio, float horas_pantalla, float cafeina, int actividad_fisica, int calidad_sueño, float acostar_semana, float acostar_finde, float despertar_semana, float despertar_finde)
 {
     calidadDelSueño nuevo;
 
+    nuevo.id = id;
     nuevo.edad = edad;
     nuevo.genero = genero;
     nuevo.año_universidad = año_universidad;

@@ -2,11 +2,11 @@
 
 #include <stdio.h>
 
-typedef struct celdavecino{
+typedef struct celdaVecino{
     int id;
     float distancia;
     celdaEstudiantes * estudiante;
-    celdaVecino * siguiente;
+    struct celdaVecino * siguiente;
 }celdaVecino;
 
 typedef struct listaOrdenadaVecinos{
