@@ -62,43 +62,27 @@ void eliminarDatoPrimero(listaEstudiantes *lista)
 
 listaEstudiantes cargarDatos(char fichero[100])  //para cargar el dataset
 {
-    int i = 1;
     FILE *fd;
     char generoStr[10];
-    char añoUniStr[30];
+    char añoUniStr[20];
 
     listaEstudiantes lista;
     iniciarLista(&lista);
     calidadDelSueño nuevo;
-    /*Variables aparentemente sin uso, revisar:
-    int edad;
-    char genero;
-    int año_universidad;
-    float horas_sueño;
-    float horas_estudio;
-    float horas_pantalla;
-    int cafeina;
-    int actividad_fisica;
-    float acostar_semana;
-    float acostar_finde;
-    float despertar_semana;
-    float despertar_finde;
-    int calidad_sueño;
-    */
 
     while ((fd = fopen(fichero, "r")) == NULL)
     {
         printf("Error al abrir el fichero, introduce el nombre correctamente: ");
         scanf("%s", fichero);
     }
-    char linea[400];
-    fgets(linea, sizeof(linea), fd); //saltar la primera linea porque creo que son cabeceras
 
-    while (fscanf(fd, "%d %d %s %s %f %f %f %d %d %d %f %f %f %f", &nuevo.id, &nuevo.edad, generoStr, añoUniStr, &nuevo.horas_sueño, &nuevo.horas_estudio, &nuevo.horas_pantalla, &nuevo.cafeina, &nuevo.actividad_fisica, &nuevo.calidad_sueño, &nuevo.acostar_semana, &nuevo.acostar_finde, &nuevo.despertar_semana, &nuevo.despertar_finde) != EOF)
+    char linea[400];
+    fgets(linea, sizeof(linea), fd); //saltar la primera linea porque son cabeceras
+
+    while (fscanf(fd, "%d,%d,%[^,],%[^,],%f,%f,%f,%d,%d,%d,%f,%f,%f,%f", &nuevo.id, &nuevo.edad, generoStr, añoUniStr, &nuevo.horas_sueño, &nuevo.horas_estudio, &nuevo.horas_pantalla, &nuevo.cafeina, &nuevo.actividad_fisica, &nuevo.calidad_sueño, &nuevo.acostar_semana, &nuevo.acostar_finde, &nuevo.despertar_semana, &nuevo.despertar_finde) != EOF)
     {
-        printf("Dato %d: \n", i);
-        printf("%d %d %s %s %f %f %f %d %d %d %f %f %f %f\n", nuevo.id, nuevo.edad, generoStr, añoUniStr, nuevo.horas_sueño, nuevo.horas_estudio, nuevo.horas_pantalla, nuevo.cafeina, nuevo.actividad_fisica, nuevo.calidad_sueño, nuevo.acostar_semana, nuevo.acostar_finde, nuevo.despertar_semana, nuevo.despertar_finde);
-        i = i + 1;
+        printf("Dato ID %d: \n", nuevo.id);
+        printf("%d %s %s %f %f %f %d %d %d %f %f %f %f\n", nuevo.edad, generoStr, añoUniStr, nuevo.horas_sueño, nuevo.horas_estudio, nuevo.horas_pantalla, nuevo.cafeina, nuevo.actividad_fisica, nuevo.calidad_sueño, nuevo.acostar_semana, nuevo.acostar_finde, nuevo.despertar_semana, nuevo.despertar_finde);
 
         if(generoStr[0] == 'M')
             nuevo.genero = 0;
