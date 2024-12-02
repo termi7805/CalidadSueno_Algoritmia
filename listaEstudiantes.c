@@ -60,9 +60,8 @@ void eliminarDatoPrimero(listaEstudiantes *lista)
     }
 }*/
 
-listaEstudiantes cargarDatos(char fichero[100])  //para cargar el dataset
+listaEstudiantes cargarDatos(FILE *  fd)  //para cargar el dataset
 {
-    FILE *fd;
     char generoStr[10];
     char añoUniStr[20];
 
@@ -70,37 +69,22 @@ listaEstudiantes cargarDatos(char fichero[100])  //para cargar el dataset
     iniciarLista(&lista);
     calidadDelSueño nuevo;
 
-    while ((fd = fopen(fichero, "r")) == NULL)
-    {
-        printf("Error al abrir el fichero, introduce el nombre correctamente: ");
-        scanf("%s", fichero);
-    }
-
     char linea[400];
     fgets(linea, sizeof(linea), fd); //saltar la primera linea porque son cabeceras
 
     while (fscanf(fd, "%d,%d,%[^,],%[^,],%f,%f,%f,%d,%d,%d,%f,%f,%f,%f", &nuevo.id, &nuevo.edad, generoStr, añoUniStr, &nuevo.horas_sueño, &nuevo.horas_estudio, &nuevo.horas_pantalla, &nuevo.cafeina, &nuevo.actividad_fisica, &nuevo.calidad_sueño, &nuevo.acostar_semana, &nuevo.acostar_finde, &nuevo.despertar_semana, &nuevo.despertar_finde) != EOF)
     {
-        printf("Dato ID %d: \n", nuevo.id);
-        printf("%d %s %s %f %f %f %d %d %d %f %f %f %f\n", nuevo.edad, generoStr, añoUniStr, nuevo.horas_sueño, nuevo.horas_estudio, nuevo.horas_pantalla, nuevo.cafeina, nuevo.actividad_fisica, nuevo.calidad_sueño, nuevo.acostar_semana, nuevo.acostar_finde, nuevo.despertar_semana, nuevo.despertar_finde);
+        printf("Dato ID %d: \n%d %s %s %f %f %f %d %d %d %f %f %f %f\n", nuevo.id, nuevo.edad, generoStr, añoUniStr, nuevo.horas_sueño, nuevo.horas_estudio, nuevo.horas_pantalla, nuevo.cafeina, nuevo.actividad_fisica, nuevo.calidad_sueño, nuevo.acostar_semana, nuevo.acostar_finde, nuevo.despertar_semana, nuevo.despertar_finde);
 
-        if(generoStr[0] == 'M')
+        if(strcmp(generoStr, "Male") == 0)
             nuevo.genero = 0;
-        else if(generoStr[0] == 'F')
+        else if(strcmp(generoStr, "Female") == 0)
             nuevo.genero = 1;
         else
             nuevo.genero = 2;
-
-
-        if(añoUniStr[0] == '1')
-            nuevo.año_universidad = 1;
-        else if(añoUniStr[0] == '2')
-            nuevo.año_universidad = 2;
-        else if(añoUniStr[0] == '3')
-            nuevo.año_universidad = 3;
-        else
-            nuevo.año_universidad = 4;
-
+    
+        nuevo.año_universidad = atoi(&añoUniStr[0]);
+        
         añadirDato(&lista, nuevo); //los añadimos 1 por 1 usando la funcion que hemos creado antes
     }
 

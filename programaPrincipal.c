@@ -44,7 +44,13 @@ int main(void)
                 char fichero[100];
                 printf("Por favor introduce el nombre del dataset: ");
                 scanf ("%s", fichero);
-				lista = cargarDatos(fichero);
+                FILE *fd;
+                while ((fd = fopen(fichero, "r")) == NULL)
+                {
+                    printf("Error al abrir el fichero, introduce el nombre correctamente: ");
+                    scanf("%s", fichero);
+                }
+				lista = cargarDatos(fd);
                 printf("El dataset ha sido cargado correctamente\n\n");
 
             case 2:
