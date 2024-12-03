@@ -1,8 +1,5 @@
-#include "listaEstudiantes.h"
 #include "listaordenadavecinos.h"
-#include "CalidadSueño.h"
 #include <math.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 void iniciarListaVecinos(listaOrdenadaVecinos *l)

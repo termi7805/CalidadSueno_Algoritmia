@@ -1,9 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-#include "CalidadSueño.h"
-#include "listaEstudiantes.h"
 #include "listaordenadavecinos.h"
+#include <stdlib.h>
 
 
 void leerCalidadDelSueño(calidadDelSueño *);

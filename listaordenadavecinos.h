@@ -1,7 +1,5 @@
 #include "listaEstudiantes.h"
 
-#include <stdio.h>
-
 typedef struct celdaVecino{
     int id;
     float distancia;
