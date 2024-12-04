@@ -14,7 +14,7 @@ bool esListaVacia(listaEstudiantes lista)
     return lista.primero == NULL;
 }
 
-void añadirDato(listaEstudiantes *lista, tipoElementoLista e)
+void añadirDato(listaEstudiantes *lista, tipoElementoLista e)  //añadimos los datos 1 por 1
 {
     celdaEstudiantes* nuevo = (celdaEstudiantes*)malloc(sizeof(celdaEstudiantes));
     if (nuevo == NULL)
@@ -38,8 +38,8 @@ void añadirDato(listaEstudiantes *lista, tipoElementoLista e)
     }
     lista->ultimo = nuevo;
 }
-/*
-void eliminarDatoPrimero(listaEstudiantes *lista)
+
+void desencolar(listaEstudiantes *lista) //esta bien?
 {
     if (esListaVacia(*lista))
     {
@@ -57,7 +57,7 @@ void eliminarDatoPrimero(listaEstudiantes *lista)
         }
         free(aux);
     }
-}*/
+}
 
 listaEstudiantes cargarDatos(FILE *  fd)  //para cargar el dataset
 {
@@ -83,7 +83,6 @@ listaEstudiantes cargarDatos(FILE *  fd)  //para cargar el dataset
             nuevo.genero = 2;
     
         nuevo.año_universidad = atoi(&añoUniStr[0]);
-        
         añadirDato(&lista, nuevo); //los añadimos 1 por 1 usando la funcion que hemos creado antes
     }
 
@@ -180,25 +179,11 @@ void normalizar(listaEstudiantes *lista, calidadDelSueño *calidad)
 
         aux = aux->sig;
     }
-    //falta el ultimo dato de la lista? (lista->dato es lo mismo que lista->ultimo->dato?)
-    /*Error al compilar, explicación en WhatsApp pendiente de resolver, comento las líneas
-    lista->dato.edad = (aux->dato.edad - minimo[0]) / (maximo[0] - minimo[0]);
-    lista->dato.genero = (aux->dato.genero - minimo[1]) / (maximo[1] - minimo[1]);
-    lista->dato.año_universidad = (aux->dato.año_universidad - minimo[2]) / (maximo[2] - minimo[2]);
-    lista->dato.horas_sueño = (aux->dato.horas_sueño - minimo[3]) / (maximo[3] - minimo[3]);
-    lista->dato.horas_estudio = (aux->dato.horas_estudio - minimo[4]) / (maximo[4] - minimo[4]);
-    lista->dato.horas_pantalla = (aux->dato.horas_pantalla - minimo[5]) / (maximo[5] - minimo[5]);
-    lista->dato.cafeina = (aux->dato.cafeina - minimo[6]) / (maximo[6] - minimo[6]);
-    lista->dato.actividad_fisica = (aux->dato.actividad_fisica - minimo[7]) / (maximo[7] - minimo[7]);
-    lista->dato.acostar_semana = (aux->dato.acostar_semana - minimo[8]) / (maximo[8] - minimo[8]);
-    lista->dato.acostar_finde = (aux->dato.acostar_finde - minimo[9]) / (maximo[9] - minimo[9]);
-    lista->dato.despertar_semana = (aux->dato.despertar_semana - minimo[10]) / (maximo[10] - minimo[10]);
-    lista->dato.despertar_finde = (aux->dato.despertar_finde - minimo[11]) / (maximo[11] - minimo[11]);*/
 }
 
 
 
-void imprimeDato(tipoElementoLista e)
+/*void imprimeDato(tipoElementoLista e)
 {
     printf("Edad: %d\n", e.edad);
     printf("Genero: %d\n", e.genero);
@@ -213,7 +198,7 @@ void imprimeDato(tipoElementoLista e)
     printf("Hora de despertarse entre semana: %f\n", e.despertar_semana);
     printf("Hora de despertarse en fin de semana: %f\n", e.despertar_finde);
     printf("Calidad de sueño: %d\n\n", e.calidad_sueño);
-}
+}*/
 
 void imprimeListaEntera(listaEstudiantes lista)
 {
@@ -235,6 +220,7 @@ void imprimeListaEntera(listaEstudiantes lista)
         printf("Despertarse semana: %f\n", aux->dato.despertar_semana);
         printf("Despertarse finde: %f\n", aux->dato.despertar_finde);
         printf("Calidad de sueño: %d\n", aux->dato.calidad_sueño);
+        printf("\n");
 
         aux = aux->sig;
     }
