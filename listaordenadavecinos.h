@@ -1,3 +1,5 @@
+#ifndef LISTAORDENADAVECINOS_H
+#define LISTAORDENADAVECINOS_H
 #include "listaEstudiantes.h"
 
 typedef struct celdaVecino{
@@ -36,3 +38,4 @@ listaOrdenadaVecinos distanciaMinima(calidadDelSueño, listaEstudiantes, int);
 float distancia(calidadDelSueño, tipoElementoLista);
 
 
+#endif
