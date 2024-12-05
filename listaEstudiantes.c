@@ -183,7 +183,7 @@ void normalizar(listaEstudiantes *lista, calidadDelSueño *calidad)
 
 
 
-/*void imprimeDato(tipoElementoLista e)
+void imprimeDato(tipoElementoLista e)
 {
     printf("Edad: %d\n", e.edad);
     printf("Genero: %d\n", e.genero);
@@ -198,7 +198,7 @@ void normalizar(listaEstudiantes *lista, calidadDelSueño *calidad)
     printf("Hora de despertarse entre semana: %f\n", e.despertar_semana);
     printf("Hora de despertarse en fin de semana: %f\n", e.despertar_finde);
     printf("Calidad de sueño: %d\n\n", e.calidad_sueño);
-}*/
+}
 
 void imprimeListaEntera(listaEstudiantes lista)
 {

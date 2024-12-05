@@ -64,14 +64,14 @@ int main(void)
         printf("\n\n");
 
 
-        /*printf("La efectividad del dataset es: \n");
+        printf("La efectividad del dataset es: \n");
         compruebaDatos(&lista,numVecinos_K);
         printf("\n\n");
 
 
         printf("Depuramos la lista\n"); //es necesario?
         depuraListaEstudiantes(&lista,numVecinos_K);
-        printf("\n\n");*/
+        printf("\n\n");
 
 
 
@@ -195,7 +195,7 @@ void imprimirResultados(calidadDelSueño CS, listaOrdenadaVecinos l)
 }
 
 
-/*void compruebaDatos(listaEstudiantes *l, int K) // -> comprobar si la predicción del nivel de calidad del sueño (basada en los vecinos más cercanos) es correcta en relación con los datos reales de cada estudiante
+void compruebaDatos(listaEstudiantes *l, int K) // -> comprobar si la predicción del nivel de calidad del sueño (basada en los vecinos más cercanos) es correcta en relación con los datos reales de cada estudiante
 {
     listaEstudiantes listaAuxiliar;
     listaOrdenadaVecinos vecinos;
@@ -207,7 +207,7 @@ void imprimirResultados(calidadDelSueño CS, listaOrdenadaVecinos l)
     // Obtener el ID del último elemento para controlar el ciclo
     fin = l->ultimo->id;
 
-    iniciarListaEstudiantes(&listaAuxiliar);
+    iniciarLista(&listaAuxiliar);
 
     aux = l->primero;
 
@@ -255,7 +255,7 @@ void imprimirResultados(calidadDelSueño CS, listaOrdenadaVecinos l)
     *l = listaAuxiliar;
 
     // Confirmar que la lista original ha sido vaciada correctamente
-    if (estavaciaListaEstudiantes(*l))
+    if (esListaVacia(*l))
     {
         printf("Lista original vaciada correctamente\n");
         printf("Retornando lista original...\n");
@@ -282,7 +282,7 @@ void depuraListaEstudiantes(listaEstudiantes *l, int K) // -> limpiar la lista d
     int fin = l->ultimo->id;
 
     // Iniciar la lista auxiliar
-    iniciarListaEstudiantes(&listaAuxiliar);
+    iniciarLista(&listaAuxiliar);
 
     aux = l->primero;
 
@@ -310,8 +310,8 @@ void depuraListaEstudiantes(listaEstudiantes *l, int K) // -> limpiar la lista d
         if (calidadSueñoPredicha == ant->dato.calidad_sueño)
         {
             cont++;
-            insertarEnLista(&listaAuxiliar, ant->dato); // Guardar en lista depurada
-            insertarEnLista(l, ant->dato);             // Mantener en lista original
+            añadirDato(&listaAuxiliar, ant->dato); // Guardar en lista depurada
+            añadirDato(l, ant->dato);             // Mantener en lista original
         }
 
         // Quitar el elemento actual de la lista original
@@ -337,7 +337,7 @@ void depuraListaEstudiantes(listaEstudiantes *l, int K) // -> limpiar la lista d
     }
 
     // Confirmar que la lista original está vacía
-    if (estavaciaListaEstudiantes(*l))
+    if (esListaVacia(*l))
     {
         printf("Lista original vaciada correctamente\n");
         printf("Retornando lista depurada...\n");
@@ -349,7 +349,7 @@ void depuraListaEstudiantes(listaEstudiantes *l, int K) // -> limpiar la lista d
 
     // Reemplazar la lista original con la lista depurada
     *l = listaAuxiliar;
-}*/
+}
 
 
 

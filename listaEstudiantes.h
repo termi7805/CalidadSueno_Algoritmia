@@ -24,6 +24,9 @@ void desencolar(listaEstudiantes *);
 listaEstudiantes cargarDatos();
 void inicializaMinMax (int *, int *, listaEstudiantes, calidadDelSueño);
 void normalizar(listaEstudiantes *, calidadDelSueño *);
+
+void imprimeDato(tipoElementoLista );
+
 //void imprimeDato(tipoElementoLista);
 void imprimeListaEntera(listaEstudiantes);
 
