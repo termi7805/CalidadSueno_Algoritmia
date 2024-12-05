@@ -93,10 +93,10 @@ listaEstudiantes cargarDatos(FILE *  fd)  //para cargar el dataset
 void inicializaMinMax (int *minimo, int *maximo, listaEstudiantes lista, calidadDelSueño calidad) //para normalizar los valores
 {
     celdaEstudiantes* aux = lista.primero;
-    int listaAux[12] = {calidad.edad, calidad.genero, calidad.año_universidad, calidad.horas_sueño, calidad.horas_estudio, calidad.horas_pantalla, calidad.cafeina, calidad.actividad_fisica, calidad.acostar_semana, calidad.acostar_finde, calidad.despertar_semana, calidad.despertar_finde};
+    int listaAux[13] = {calidad.edad, calidad.genero, calidad.año_universidad, calidad.horas_sueño, calidad.horas_estudio, calidad.horas_pantalla, calidad.cafeina, calidad.actividad_fisica, calidad.calidad_sueño, calidad.acostar_semana, calidad.acostar_finde, calidad.despertar_semana, calidad.despertar_finde};
     
-    memcpy(minimo, listaAux, 12);
-    memcpy(maximo, listaAux, 12);
+    memcpy(minimo, listaAux, 13);
+    memcpy(maximo, listaAux, 13);
 
     while (aux != NULL)  //recorremos toda la lista para encontrar los valores maximos y minimos
     {
@@ -180,8 +180,6 @@ void normalizar(listaEstudiantes *lista, calidadDelSueño *calidad)
         aux = aux->sig;
     }
 }
-
-
 
 void imprimeDato(tipoElementoLista e)
 {

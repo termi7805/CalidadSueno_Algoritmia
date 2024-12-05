@@ -1,7 +1,7 @@
 #include "CalidadSueño.h"
 
 
-calidadDelSueño nuevoEstudiante (int id, int edad, int genero, int año_universidad, float horas_sueño, float horas_estudio, float horas_pantalla, float cafeina, int actividad_fisica, int calidad_sueño, float acostar_semana, float acostar_finde, float despertar_semana, float despertar_finde)
+/*calidadDelSueño nuevoEstudiante (int id, int edad, int genero, int año_universidad, float horas_sueño, float horas_estudio, float horas_pantalla, float cafeina, int actividad_fisica, int calidad_sueño, float acostar_semana, float acostar_finde, float despertar_semana, float despertar_finde)
 {
     calidadDelSueño nuevo;
 
@@ -20,16 +20,16 @@ calidadDelSueño nuevoEstudiante (int id, int edad, int genero, int año_univers
     nuevo.despertar_finde = despertar_finde;
 
     return nuevo;
-}
+}*/
 
-//Revisar si se usa
-bool sueño(calidadDelSueño calidadSueño)
+
+/*bool sueño(calidadDelSueño calidadSueño)
 {
     return calidadSueño.calidad_sueño;
-}
-//Revisar si se usa
-void cambiarCalidad(calidadDelSueño *calidadSueño, int calidad)
+}*/
+
+/*void cambiarCalidad(calidadDelSueño *calidadSueño, int calidad)
 {
     calidadSueño->calidad_sueño = calidad;
-}
+}*/
 

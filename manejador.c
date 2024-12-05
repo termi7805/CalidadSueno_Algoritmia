@@ -1,5 +1,6 @@
 #include "listaordenadavecinos.h"
 #include <stdlib.h>
+#include <unistd.h>
 
 
 void leerCalidadDelSueño(calidadDelSueño *);
@@ -41,9 +42,10 @@ int main(void)
 
 
         printf("Ahora procederemos a normalizar todos los datos obtenidos\n");
+        sleep(2);
         normalizar(&lista, &CalidadDelSueño);
-        printf("Datos normalizados correctamente\n\n");
         imprimeListaEntera(lista);
+        printf("Datos normalizados correctamente\n\n");
 
 
         printf("Introduce un valor para k (k > 0) que representa el numero de vecinos: ");
@@ -56,26 +58,24 @@ int main(void)
         printf("\n\n");
 
 
-        printf("Finalmente, la CALIDAD DEL SUEÑO obtenida es: \n");
         iniciarListaVecinos(&listaVecinos);
         listaVecinos = distanciaMinima(CalidadDelSueño, lista, numVecinos_K);
-        determinarCalidadSueño(listaVecinos, &CalidadDelSueño);
         imprimirResultados(CalidadDelSueño, listaVecinos);
         printf("\n\n");
 
 
         printf("La efectividad del dataset es: \n");
-        compruebaDatos(&lista,numVecinos_K);
+        //compruebaDatos(&lista,numVecinos_K);
         printf("\n\n");
 
 
-        printf("Depuramos la lista\n"); //es necesario?
-        depuraListaEstudiantes(&lista,numVecinos_K);
+        printf("Depuramos la lista\n");
+        //depuraListaEstudiantes(&lista,numVecinos_K);
         printf("\n\n");
 
 
 
-        printf("Desea hacer otra prueba con el mismo dataset? (s/n)");
+        printf("Desea hacer otra prueba con el mismo dataset? (s/n): ");
         scanf(" %c", &salir);
 
     } while(salir == 's');
@@ -170,17 +170,10 @@ void leerCalidadDelSueño(calidadDelSueño * CS)
 
 }
 
-void determinarCalidadSueño(listaOrdenadaVecinos l, calidadDelSueño *CS)
-{
-    CS -> calidad_sueño = mediaVecinos(l);
-    printf("La calidad de sueño del estudiante es: %d\n", CS -> calidad_sueño);
-
-    printf("\n");
-}
-
 void imprimirResultados(calidadDelSueño CS, listaOrdenadaVecinos l)
 {
     printf("El nivel de calidad de sueño a comprobar ha resultado ser: %d\n", mediaVecinos(l));
+    sleep(2);
     celdaVecino * auxiliar;
     auxiliar = l.primero;
     int i = 1;
@@ -189,13 +182,12 @@ void imprimirResultados(calidadDelSueño CS, listaOrdenadaVecinos l)
         imprimeDato(auxiliar->estudiante->dato);
         auxiliar = auxiliar -> siguiente;
         i++;
-        printf ("----------------------------------------------------------------------------------\n");
+        printf ("------------------------------------------------------------\n");
     }
-
 }
 
 
-void compruebaDatos(listaEstudiantes *l, int K) // -> comprobar si la predicción del nivel de calidad del sueño (basada en los vecinos más cercanos) es correcta en relación con los datos reales de cada estudiante
+/*void compruebaDatos(listaEstudiantes *l, int K) // -> comprobar si la predicción del nivel de calidad del sueño (basada en los vecinos más cercanos) es correcta en relación con los datos reales de cada estudiante
 {
     listaEstudiantes listaAuxiliar;
     listaOrdenadaVecinos vecinos;
@@ -264,11 +256,11 @@ void compruebaDatos(listaEstudiantes *l, int K) // -> comprobar si la predicció
     {
         printf("Error: la lista original no se vació correctamente\n");
     }
-}
+}*/
 
 
 
-void depuraListaEstudiantes(listaEstudiantes *l, int K) // -> limpiar la lista de estudiantes eliminando aquellos cuya predicción de calidad del sueño no fue correcta, conservando solo aquellos  con predicciones correctas. De esta manera, la lista original se depura para que solo contenga los elementos más precisos.
+/*void depuraListaEstudiantes(listaEstudiantes *l, int K) // -> limpiar la lista de estudiantes eliminando aquellos cuya predicción de calidad del sueño no fue correcta, conservando solo aquellos  con predicciones correctas. De esta manera, la lista original se depura para que solo contenga los elementos más precisos.
 {
     listaEstudiantes listaAuxiliar;
     listaOrdenadaVecinos vecinos;
@@ -349,7 +341,7 @@ void depuraListaEstudiantes(listaEstudiantes *l, int K) // -> limpiar la lista d
 
     // Reemplazar la lista original con la lista depurada
     *l = listaAuxiliar;
-}
+}*/
 
 
 

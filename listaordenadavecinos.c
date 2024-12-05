@@ -70,15 +70,15 @@ int mediaVecinos(listaOrdenadaVecinos l)
 			tipoPredominante = i;
 		}
 		
-		else if (tipo[i] == tipo[tipoPredominante]) //En caso de empate, se elige el que tenga mayor distancia
+		else if (tipo[i] == tipo[tipoPredominante]) //En caso de empate, se elige el que tenga menor distancia
 		{
-			if(distancia[i] > distancia[tipoPredominante])
+			if(distancia[i] < distancia[tipoPredominante])
 			{
 				tipoPredominante = i;
 			}
 		}
 	}
-	return tipoPredominante + 1;
+	return tipoPredominante + 1; //+1 porque?
 }
 
 void insertar(listaOrdenadaVecinos *l, celdaVecino c)
