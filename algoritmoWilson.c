@@ -7,10 +7,8 @@ void precisionAcierto(listaEstudiantes *l, int K) // -> comprobar si la predicci
     listaEstudiantes listaAuxiliar;
     listaOrdenadaVecinos vecinos;
     celdaEstudiantes *aux, *ant;
-    celdaVecino *vecinoAux;
     float cont = 0, cont2 = 0;
     int calidadSueñoPredicha;
-
 
 
     iniciarLista(&listaAuxiliar);
@@ -30,11 +28,9 @@ void precisionAcierto(listaEstudiantes *l, int K) // -> comprobar si la predicci
         calidadSueñoPredicha = mediaVecinos(vecinos);
 
         // Limpiar la lista de vecinos después de usarla
-        while (!estaVacia(vecinos))
+         while (!estaVacia(vecinos))
         {
-            vecinoAux = vecinos.primero;
-            vecinos.primero = vecinos.primero->siguiente;
-            free(vecinoAux);
+            desencolarVecinos(&vecinos);
         }
 
         // Verificar si la predicción coincide con el valor real
@@ -80,7 +76,6 @@ void algoritmoENN(listaEstudiantes *l, int K) // -> limpiar la lista de estudian
     listaEstudiantes listaAuxiliar;
     listaOrdenadaVecinos vecinos;
     celdaEstudiantes *aux, *ant;
-    celdaVecino *vecinoAux;
     float cont = 0;
     float cont2 = 0;
     int calidadSueñoPredicha;
@@ -105,13 +100,12 @@ void algoritmoENN(listaEstudiantes *l, int K) // -> limpiar la lista de estudian
         // Predecir el nivel de calidad del sueño basado en la media de los vecinos
         calidadSueñoPredicha = mediaVecinos(vecinos);
 
-        // Limpiar la lista de vecinos después de usarla
+
         while (!estaVacia(vecinos))
         {
-            vecinoAux = vecinos.primero;
-            vecinos.primero = vecinos.primero->siguiente;
-            free(vecinoAux);
+            desencolarVecinos(&vecinos);
         }
+
 
         // Si la predicción coincide, mantener el elemento
         if (calidadSueñoPredicha == ant->dato.calidad_sueño)
@@ -126,7 +120,6 @@ void algoritmoENN(listaEstudiantes *l, int K) // -> limpiar la lista de estudian
         cont2++;
     }
 
-    // Mostrar estadísticas
     printf("\n");
     printf("------------------------------------------------------------\n");
     printf("Total de elementos procesados: %.0f\n", cont2);
@@ -136,16 +129,13 @@ void algoritmoENN(listaEstudiantes *l, int K) // -> limpiar la lista de estudian
     printf("Calidad de sueño predicha: %d\n", calidadSueñoPredicha);
     printf("------------------------------------------------------------\n");
 
-    // Vaciar la lista original
-    aux = l->primero;
-    while (aux != NULL)
+    while (!esListaVacia(*l))
     {
         desencolarEstudiantes(l);
-        aux = aux->sig;
     }
 
-    // Confirmar que la lista original está vacía
-    if (esListaVacia(*l))
+
+    if (esListaVacia(*l)) //confirmamos que esta vacia
     {
         printf("Lista original vaciada correctamente\n");
         printf("Retornando lista depurada...\n");

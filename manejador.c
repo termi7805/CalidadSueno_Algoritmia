@@ -1,7 +1,6 @@
 #include "listaordenadavecinos.h"
 #include "algoritmoWilson.h"
 #include <stdlib.h>
-#include <unistd.h>
 
 int main(void)
 {
@@ -36,7 +35,6 @@ int main(void)
 
         //NORMALIZACION DE LOS DATOS
         printf("Ahora procederemos a normalizar todos los datos obtenidos\n");
-        sleep(2);
         normalizar(&lista, &CalidadDelSueño);
         imprimeListaEntera(lista);
         printf("Datos normalizados correctamente\n\n");

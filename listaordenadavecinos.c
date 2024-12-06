@@ -36,7 +36,7 @@ bool deberiaEstarEnLaLista(listaOrdenadaVecinos lista, float distancia)
 	}
 }
 
-int mediaVecinos(listaOrdenadaVecinos l) //
+int mediaVecinos(listaOrdenadaVecinos l)
 {
 	if (estaVacia(l)){
 		printf("ERROR: Lista de vecinos vacia\n");
@@ -78,7 +78,7 @@ int mediaVecinos(listaOrdenadaVecinos l) //
 			}
 		}
 	}
-	return tipoPredominante + 1; //+1 porque?
+	return tipoPredominante + 1; //+1 porque nuestro array va del 0-9
 }
 
 void insertarVecino(listaOrdenadaVecinos *l, celdaVecino c) //
@@ -96,10 +96,10 @@ void insertarVecino(listaOrdenadaVecinos *l, celdaVecino c) //
     else {
 
         if(estaLlena(*l)){
-            if(deberiaEstarEnLaLista(*l, c.distancia)){ //sobra esta comprobacion porque la hemos hecho al llamar a insertar no?
+            if(deberiaEstarEnLaLista(*l, c.distancia)){
                 eliminarConPos(l, l->numeroVecinos);
                 insertarVecino(l, c);
-            }
+			}
         }
 
         else{
@@ -160,7 +160,7 @@ void eliminarConPos(listaOrdenadaVecinos *l, int pos)//
 		free(aux);
 		l->numeroVecinos = l->numeroVecinos - 1;
 	}
-}	
+}
 
 listaOrdenadaVecinos distanciaMinima(calidadDelSueño CS, listaEstudiantes lista, int K) //Crea lista de K vecinos cercanos
 {

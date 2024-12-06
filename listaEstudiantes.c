@@ -191,6 +191,7 @@ void normalizar(listaEstudiantes *lista, calidadDelSueño *calidad)
 
         aux = aux->sig;
     }
+    //normalizamos el dato que hemos solicitado al usuario
     if(maximo[0] != minimo[0]) //para no dividir por 0
         calidad->edad = (calidad->edad - minimo[0]) / (maximo[0] - minimo[0]);
     if(maximo[1] != minimo[1])

@@ -4,7 +4,7 @@
 #include "listaEstudiantes.h"
 
 void precisionAcierto(listaEstudiantes *, int);
-void algoritmoENN(listaEstudiantes*, int);
+void algoritmoENN(listaEstudiantes *, int);
 
 
 #endif
