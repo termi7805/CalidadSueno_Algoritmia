@@ -205,21 +205,7 @@ void imprimeListaEntera(listaEstudiantes lista)
 
     while (aux != NULL)
     {
-        printf("Edad: %d\n", aux->dato.edad);
-        printf("Genero: %d\n", aux->dato.genero);
-        printf("Curso: %d\n", aux->dato.año_universidad);
-        printf("Horas sueño: %f\n", aux->dato.horas_sueño);
-        printf("Horas estudio: %f\n", aux->dato.horas_estudio);
-        printf("Tiempo pantallas: %f\n", aux->dato.horas_pantalla);
-        printf("Cafeina: %d\n", aux->dato.cafeina);
-        printf("Actividad fisica: %d\n", aux->dato.actividad_fisica);
-        printf("Acostarse semana: %f\n", aux->dato.acostar_semana);
-        printf("Acostarse finde: %f\n", aux->dato.acostar_finde);
-        printf("Despertarse semana: %f\n", aux->dato.despertar_semana);
-        printf("Despertarse finde: %f\n", aux->dato.despertar_finde);
-        printf("Calidad de sueño: %d\n", aux->dato.calidad_sueño);
-        printf("\n");
-
+        imprimeDato(aux->dato);
         aux = aux->sig;
     }
 }

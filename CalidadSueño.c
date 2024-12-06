@@ -8,7 +8,7 @@ void leerCalidadDelSueño(calidadDelSueño * CS)
     scanf("%d",&CS -> edad);
     printf("\n");
 
-    printf("Introduce su genero (Mujer = 0 || Hombre = 1 || Otro = 2): ");
+    printf("Introduce su genero (Hombre = 0 || Mujer = 1 || Otro = 2): ");
     scanf("%d",&CS -> genero);
     printf("\n");
 
