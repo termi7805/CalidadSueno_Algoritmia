@@ -2,43 +2,43 @@
 #include <math.h>
 #include <stdlib.h>
 
-void iniciarListaVecinos(listaOrdenadaVecinos *l)
+void iniciarListaVecinos(listaOrdenadaVecinos *lista)
 {
-	l->primero = NULL;
-	l->ultimo = NULL;
-	l->numeroVecinos = 0;
-	l->maximo = 0;
+	lista->primero = NULL;
+	lista->ultimo = NULL;
+	lista->numeroVecinos = 0;
+	lista->maximo = 0;
 }
 
-void cambiarK(listaOrdenadaVecinos *l, int k)
+void cambiarK(listaOrdenadaVecinos *lista, int k)
 {
-	l->maximo = k; //K: numero de vecinos que se quieren guardar
+	lista->maximo = k; //K: numero de vecinos que se quieren guardar
 }
 
-bool estavacia(listaOrdenadaVecinos l)
+bool estaVacia(listaOrdenadaVecinos lista)
 {
-	return l.primero == NULL;
+	return lista.primero == NULL;
 }
 
-bool estallena(listaOrdenadaVecinos l)
+bool estaLlena(listaOrdenadaVecinos lista)
 {
-	return l.numeroVecinos == l.maximo;
+	return lista.numeroVecinos == lista.maximo;
 }
 
-bool deberiaEstarEnLaLista(listaOrdenadaVecinos l, float distancia)
+bool deberiaEstarEnLaLista(listaOrdenadaVecinos lista, float distancia)
 {
-	if(!estallena(l)){
+	if(!estaLlena(lista)){
 		return true;
 	}	
 	
 	else{
-		return (distancia < l.ultimo->distancia); //true: si es menor  false: si es mayor
+		return (distancia < lista.ultimo->distancia); //true: si es menor  false: si es mayor
 	}
 }
 
-int mediaVecinos(listaOrdenadaVecinos l)
+int mediaVecinos(listaOrdenadaVecinos l) //
 {
-	if (estavacia(l)){
+	if (estaVacia(l)){
 		printf("ERROR: Lista de vecinos vacia\n");
 		exit(-1);
 	}
@@ -81,12 +81,12 @@ int mediaVecinos(listaOrdenadaVecinos l)
 	return tipoPredominante + 1; //+1 porque?
 }
 
-void insertar(listaOrdenadaVecinos *l, celdaVecino c)
+void insertar(listaOrdenadaVecinos *l, celdaVecino c) //
 {
     celdaVecino *nueva = (celdaVecino*)malloc(sizeof(celdaVecino));
     *nueva = c;
     
-    if(estavacia(*l)){
+    if(estaVacia(*l)){
         l->primero = nueva;
         l->ultimo = nueva; 
         nueva->siguiente = NULL;
@@ -95,8 +95,8 @@ void insertar(listaOrdenadaVecinos *l, celdaVecino c)
 
     else {
 
-        if(estallena(*l)){
-            if(deberiaEstarEnLaLista(*l, c.distancia) ){
+        if(estaLlena(*l)){
+            if(deberiaEstarEnLaLista(*l, c.distancia)){ //sobra esta comprobacion porque la hemos hecho al llamar a insertar no?
                 eliminarConPos(l, l->numeroVecinos);
                 insertar(l, c);
             }
@@ -133,7 +133,7 @@ void insertar(listaOrdenadaVecinos *l, celdaVecino c)
     }
 }
 
-void eliminarConPos(listaOrdenadaVecinos *l, int pos)
+void eliminarConPos(listaOrdenadaVecinos *l, int pos)//
 {
 	int i = 0;
 	celdaVecino *aux = l->primero;
@@ -162,21 +162,21 @@ void eliminarConPos(listaOrdenadaVecinos *l, int pos)
 	}
 }	
 
-listaOrdenadaVecinos distanciaMinima(calidadDelSueño sueño, listaEstudiantes datos, int K) //Crea lista de K vecinos cercanos
+listaOrdenadaVecinos distanciaMinima(calidadDelSueño CS, listaEstudiantes lista, int K) //Crea lista de K vecinos cercanos
 {
 	listaOrdenadaVecinos vecinosCercanos;
-	celdaEstudiantes * aux;
+	celdaEstudiantes *aux;
 	celdaVecino nueva;
 	iniciarListaVecinos(&vecinosCercanos);
 	cambiarK(&vecinosCercanos, K);
-	aux = datos.primero;
+	aux = lista.primero;
 	while (aux != NULL)
 	{
-		nueva.distancia = distancia(sueño, aux->dato);
+		nueva.distancia = distancia(CS, aux->dato);
 		if(deberiaEstarEnLaLista(vecinosCercanos, nueva.distancia))
 		{
 			nueva.id = aux->id - 1;
-			nueva.distancia = distancia(sueño, aux->dato);
+			nueva.distancia = distancia(CS, aux->dato);
 			nueva.estudiante = aux;
 			insertar(&vecinosCercanos, nueva);
 		}
@@ -185,7 +185,7 @@ listaOrdenadaVecinos distanciaMinima(calidadDelSueño sueño, listaEstudiantes d
 	return vecinosCercanos;
 }
 
-float distancia(calidadDelSueño a, tipoElementoLista b) //Calcula la distancia euclidea entre dos elementos
+float distancia(calidadDelSueño a, calidadDelSueño b) //Calcula la distancia euclidea entre dos elementos
 {
     float suma = 0;
     suma += pow(a.año_universidad - b.año_universidad, 2);
@@ -204,13 +204,14 @@ float distancia(calidadDelSueño a, tipoElementoLista b) //Calcula la distancia 
     return sqrt(suma);
 }
 
-void imprimirResultados(calidadDelSueño CS, listaOrdenadaVecinos lista)
+void imprimirResultados(listaOrdenadaVecinos lista)
 {
     celdaVecino * aux;
+	int i = 1;
 
     printf("El nivel de calidad de sueño a comprobar ha resultado ser: %d\n\n", mediaVecinos(lista));
-    aux = lista.primero;
-    int i = 1;
+
+	aux = lista.primero;
     while (aux != NULL)
     {
         printf("La distancia a la calidad de sueño %d mas cercana ha sido %f, perteneciente a la posicion %d: \n", i, aux->distancia, aux->id);
@@ -219,15 +220,23 @@ void imprimirResultados(calidadDelSueño CS, listaOrdenadaVecinos lista)
         i = i + 1;
     }
 }
-	
 
+void desencolarVecinos(listaOrdenadaVecinos *lista)
+{
+    if (estaVacia(*lista)) {
+        printf("No se puede desencolar de lista vacía\n");
+        exit(-1);
+    }
 
+    celdaVecino *aux;
+	aux = lista->primero;
 
+    lista->primero = lista->primero->siguiente;
 
+    if (lista->primero == NULL) {
+        lista->ultimo = NULL;
+    }
 
-
-
-
-
-
-
+    lista->numeroVecinos = lista->numeroVecinos - 1;
+    free(aux);
+}

@@ -9,17 +9,16 @@ void precisionAcierto(listaEstudiantes *l, int K) // -> comprobar si la predicci
     celdaEstudiantes *aux, *ant;
     celdaVecino *vecinoAux;
     float cont = 0, cont2 = 0;
-    int fin, calidadSueñoPredicha;
+    int calidadSueñoPredicha;
 
-    // Obtener el ID del último elemento para controlar el ciclo
-    fin = l->ultimo->id;
+
 
     iniciarLista(&listaAuxiliar);
 
     aux = l->primero;
 
     // Procesar todos los estudiantes
-    while (aux != NULL && aux->id <= fin)
+    while (aux != NULL && aux->id <= l->ultimo->id)
     {
         ant = aux;
         aux = aux->sig;
@@ -31,7 +30,7 @@ void precisionAcierto(listaEstudiantes *l, int K) // -> comprobar si la predicci
         calidadSueñoPredicha = mediaVecinos(vecinos);
 
         // Limpiar la lista de vecinos después de usarla
-        while (!estavacia(vecinos))
+        while (!estaVacia(vecinos))
         {
             vecinoAux = vecinos.primero;
             vecinos.primero = vecinos.primero->siguiente;
@@ -46,7 +45,7 @@ void precisionAcierto(listaEstudiantes *l, int K) // -> comprobar si la predicci
 
         // Añadir el elemento a ambas listas
         añadirDato(&listaAuxiliar, ant->dato);
-        desencolar(l);
+        desencolarEstudiantes(l);
         cont2++;
     }
 
@@ -58,9 +57,6 @@ void precisionAcierto(listaEstudiantes *l, int K) // -> comprobar si la predicci
     printf("Porcentaje de efectividad: %.2f%%\n", (cont / cont2) * 100);
     printf("------------------------------------------------------------\n");
 
-    // Reemplazar la lista original con la lista auxiliar
-    *l = listaAuxiliar;
-
     // Confirmar que la lista original ha sido vaciada correctamente
     if (esListaVacia(*l))
     {
@@ -71,6 +67,10 @@ void precisionAcierto(listaEstudiantes *l, int K) // -> comprobar si la predicci
     {
         printf("Error: la lista original no se vació correctamente\n");
     }
+
+     // Reemplazar la lista original con la lista auxiliar
+    *l = listaAuxiliar;
+
 }
 
 
@@ -105,7 +105,7 @@ void algoritmoENN(listaEstudiantes *l, int K) // -> limpiar la lista de estudian
         calidadSueñoPredicha = mediaVecinos(vecinos);
 
         // Limpiar la lista de vecinos después de usarla
-        while (!estavacia(vecinos))
+        while (!estaVacia(vecinos))
         {
             vecinoAux = vecinos.primero;
             vecinos.primero = vecinos.primero->siguiente;
@@ -121,7 +121,7 @@ void algoritmoENN(listaEstudiantes *l, int K) // -> limpiar la lista de estudian
         }
 
         // Quitar el elemento actual de la lista original
-        desencolar(l);
+        desencolarEstudiantes(l);
         cont2++;
     }
 
@@ -138,7 +138,7 @@ void algoritmoENN(listaEstudiantes *l, int K) // -> limpiar la lista de estudian
     aux = l->primero;
     while (aux != NULL)
     {
-        desencolar(l);
+        desencolarEstudiantes(l);
         aux = aux->sig;
     }
 

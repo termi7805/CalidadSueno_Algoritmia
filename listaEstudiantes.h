@@ -3,10 +3,8 @@
 
 #include "CalidadSueño.h"
 
-typedef calidadDelSueño tipoElementoLista;
-
 typedef struct celdaEstudiantes{
-    tipoElementoLista dato;
+    calidadDelSueño dato;
     struct celdaEstudiantes *sig;
     int id;  //lista[0] == id 0, lista[N] == id N
 } celdaEstudiantes;
@@ -19,15 +17,12 @@ typedef struct listaEstudiantes{
 
 void iniciarLista(listaEstudiantes *);
 bool esListaVacia(listaEstudiantes);
-void añadirDato(listaEstudiantes *, tipoElementoLista);
-void desencolar(listaEstudiantes *);
+void añadirDato(listaEstudiantes *, calidadDelSueño);
 listaEstudiantes cargarDatos();
+void desencolarEstudiantes(listaEstudiantes *);
 void inicializaMinMax (int *, int *, listaEstudiantes, calidadDelSueño);
 void normalizar(listaEstudiantes *, calidadDelSueño *);
-
-void imprimeDato(tipoElementoLista );
-
-//void imprimeDato(tipoElementoLista);
+void imprimeDato(calidadDelSueño);
 void imprimeListaEntera(listaEstudiantes);
 
 #endif

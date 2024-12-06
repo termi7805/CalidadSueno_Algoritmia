@@ -55,7 +55,7 @@ int main(void)
 
         iniciarListaVecinos(&listaVecinos);
         listaVecinos = distanciaMinima(CalidadDelSueño, lista, numVecinos_K);
-        imprimirResultados(CalidadDelSueño, listaVecinos);
+        imprimirResultados(listaVecinos);
         printf("\n");
 
 
@@ -80,22 +80,17 @@ int main(void)
     } while(salir == 's');
 
     printf("Saliendo del programa\n");
-    celdaEstudiantes *borrar;
-    borrar = lista.primero;
-    while (borrar != NULL)
+
+    //eliminamos la lista de estudiantes
+    while (!esListaVacia(lista)) // Recorremos hasta que la lista esté vacía
     {
-        desencolar (&lista);
-        borrar = borrar->sig;
+        desencolarEstudiantes(&lista); // Elimina el primer nodo y lo libera
+    }
+    while (!estaVacia(listaVecinos)) // Recorremos hasta que la lista esté vacía
+    {
+        desencolarVecinos(&listaVecinos); // Elimina el primer nodo y lo libera
     }
 
-    celdaVecino *vecinito;
-
-    while (!estavacia(listaVecinos))
-    {
-        vecinito = listaVecinos.primero;
-        listaVecinos.primero = listaVecinos.primero->siguiente;
-        free(vecinito);
-    }
 
     return 0;
 }

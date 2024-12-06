@@ -13,7 +13,7 @@ typedef struct listaOrdenadaVecinos{
     celdaVecino* primero;
     celdaVecino* ultimo;
     int numeroVecinos;
-    int maximo;
+    int maximo; //k
 }listaOrdenadaVecinos;
 
 
@@ -21,9 +21,9 @@ void iniciarListaVecinos(listaOrdenadaVecinos *);
 
 void cambiarK(listaOrdenadaVecinos *, int);
 
-bool estavacia(listaOrdenadaVecinos);
+bool estaVacia(listaOrdenadaVecinos);
 
-bool estallena(listaOrdenadaVecinos);
+bool estaLlena(listaOrdenadaVecinos);
 
 bool deberiaEstarenLaLista(listaOrdenadaVecinos , float);
 
@@ -35,9 +35,11 @@ void eliminarConPos(listaOrdenadaVecinos *, int);
 
 listaOrdenadaVecinos distanciaMinima(calidadDelSueño, listaEstudiantes, int);
 
-float distancia(calidadDelSueño, tipoElementoLista);
+float distancia(calidadDelSueño, calidadDelSueño);
 
-void imprimirResultados(calidadDelSueño, listaOrdenadaVecinos);
+void imprimirResultados(listaOrdenadaVecinos);
+
+void desencolarVecinos(listaOrdenadaVecinos *);
 
 
 
