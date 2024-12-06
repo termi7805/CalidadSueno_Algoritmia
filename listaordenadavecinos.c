@@ -81,7 +81,7 @@ int mediaVecinos(listaOrdenadaVecinos l) //
 	return tipoPredominante + 1; //+1 porque?
 }
 
-void insertar(listaOrdenadaVecinos *l, celdaVecino c) //
+void insertarVecino(listaOrdenadaVecinos *l, celdaVecino c) //
 {
     celdaVecino *nueva = (celdaVecino*)malloc(sizeof(celdaVecino));
     *nueva = c;
@@ -98,7 +98,7 @@ void insertar(listaOrdenadaVecinos *l, celdaVecino c) //
         if(estaLlena(*l)){
             if(deberiaEstarEnLaLista(*l, c.distancia)){ //sobra esta comprobacion porque la hemos hecho al llamar a insertar no?
                 eliminarConPos(l, l->numeroVecinos);
-                insertar(l, c);
+                insertarVecino(l, c);
             }
         }
 
@@ -178,7 +178,7 @@ listaOrdenadaVecinos distanciaMinima(calidadDelSueño CS, listaEstudiantes lista
 			nueva.id = aux->id - 1;
 			nueva.distancia = distancia(CS, aux->dato);
 			nueva.estudiante = aux;
-			insertar(&vecinosCercanos, nueva);
+			insertarVecino(&vecinosCercanos, nueva);
 		}
 		aux = aux->sig;
 	}
@@ -209,16 +209,16 @@ void imprimirResultados(listaOrdenadaVecinos lista)
     celdaVecino * aux;
 	int i = 1;
 
-    printf("El nivel de calidad de sueño a comprobar ha resultado ser: %d\n\n", mediaVecinos(lista));
-
 	aux = lista.primero;
     while (aux != NULL)
     {
         printf("La distancia a la calidad de sueño %d mas cercana ha sido %f, perteneciente a la posicion %d: \n", i, aux->distancia, aux->id);
         imprimeDato(aux->estudiante->dato);
         aux = aux->siguiente;
-        i = i + 1;
+        i++;
     }
+
+	printf("El nivel de calidad de sueño a comprobar ha resultado ser: %d\n\n", mediaVecinos(lista));
 }
 
 void desencolarVecinos(listaOrdenadaVecinos *lista)

@@ -29,7 +29,7 @@ bool deberiaEstarenLaLista(listaOrdenadaVecinos , float);
 
 int mediaVecinos(listaOrdenadaVecinos);
 
-void insertar(listaOrdenadaVecinos *, celdaVecino);
+void insertarVecino(listaOrdenadaVecinos *, celdaVecino);
 
 void eliminarConPos(listaOrdenadaVecinos *, int);
 

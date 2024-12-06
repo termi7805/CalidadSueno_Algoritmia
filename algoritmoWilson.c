@@ -55,6 +55,7 @@ void precisionAcierto(listaEstudiantes *l, int K) // -> comprobar si la predicci
     printf("Total de elementos en la lista: %.0f\n", cont2);
     printf("Se ha acertado en %.0f elementos\n", cont);
     printf("Porcentaje de efectividad: %.2f%%\n", (cont / cont2) * 100);
+    printf("Calidad de sueño predicha: %d\n", calidadSueñoPredicha);
     printf("------------------------------------------------------------\n");
 
     // Confirmar que la lista original ha sido vaciada correctamente
@@ -132,6 +133,7 @@ void algoritmoENN(listaEstudiantes *l, int K) // -> limpiar la lista de estudian
     printf("Elementos guardados: %.0f\n", cont);
     printf("Elementos eliminados: %.0f\n", cont2 - cont);
     printf("Porcentaje de efectividad: %.2f%%\n", (cont / cont2) * 100);
+    printf("Calidad de sueño predicha: %d\n", calidadSueñoPredicha);
     printf("------------------------------------------------------------\n");
 
     // Vaciar la lista original

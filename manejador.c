@@ -20,7 +20,7 @@ int main(void)
     scanf("%s", fichero);
     while ((fd = fopen(fichero, "r")) == NULL)
     {
-        printf("Error al abrir el fichero, introduce el nombre correcto: \n");
+        printf("Error al abrir el fichero, introduce el nombre correcto: ");
         scanf("%s", fichero);
     }
     lista = cargarDatos(fd);

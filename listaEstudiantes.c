@@ -191,6 +191,30 @@ void normalizar(listaEstudiantes *lista, calidadDelSueño *calidad)
 
         aux = aux->sig;
     }
+    if(maximo[0] != minimo[0]) //para no dividir por 0
+        calidad->edad = (calidad->edad - minimo[0]) / (maximo[0] - minimo[0]);
+    if(maximo[1] != minimo[1])
+        calidad->genero = (calidad->genero - minimo[1]) / (maximo[1] - minimo[1]);
+    if(maximo[2] != minimo[2])
+        calidad->año_universidad = (calidad->año_universidad - minimo[2]) / (maximo[2] - minimo[2]);
+    if(maximo[3] != minimo[3])
+        calidad->horas_sueño = (calidad->horas_sueño - minimo[3]) / (maximo[3] - minimo[3]);
+    if(maximo[4] != minimo[4])
+        calidad->horas_estudio = (calidad->horas_estudio - minimo[4]) / (maximo[4] - minimo[4]);
+    if(maximo[5] != minimo[5])
+        calidad->horas_pantalla = (calidad->horas_pantalla - minimo[5]) / (maximo[5] - minimo[5]);
+    if(maximo[6] != minimo[6])
+        calidad->cafeina = (calidad->cafeina - minimo[6]) / (maximo[6] - minimo[6]);
+    if(maximo[7] != minimo[7])
+        calidad->actividad_fisica = (calidad->actividad_fisica - minimo[7]) / (maximo[7] - minimo[7]);
+    if(maximo[8] != minimo[8])
+        calidad->acostar_semana = (calidad->acostar_semana - minimo[8]) / (maximo[8] - minimo[8]);
+    if(maximo[9] != minimo[9])
+        calidad->acostar_finde = (calidad->acostar_finde - minimo[9]) / (maximo[9] - minimo[9]);
+    if(maximo[10] != minimo[10])
+        calidad->despertar_semana = (calidad->despertar_semana - minimo[10]) / (maximo[10] - minimo[10]);
+    if(maximo[11] != minimo[11])
+        calidad->despertar_finde = (calidad->despertar_finde - minimo[11]) / (maximo[11] - minimo[11]);
 }
 
 void imprimeDato(calidadDelSueño e)
