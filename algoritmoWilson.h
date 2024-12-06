@@ -1,7 +1,8 @@
-#ifndef ALGORITMODEWILSON_H
-#define ALGORITMODEWILSON_H
+#ifndef ALGORITMOWILSON_H
+#define ALGORITMOWILSON_H
+#include "listaEstudiantes.h"
 
-void precisionDeAcierto(listaEstudiantes *, int);
+void precisionAcierto(listaEstudiantes *, int);
 void algoritmoENN(listaEstudiantes*, int);
 
 

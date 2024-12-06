@@ -1,4 +1,5 @@
 #include "listaordenadavecinos.h"
+#include "algoritmoWilson.h"
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -60,15 +61,15 @@ int main(void)
 
         //ALGORITMO DE WILSON
         printf("La efectividad del dataset es: \n");
-        //precisionAcierto(&lista, numVecinos_K);
+        precisionAcierto(&lista, numVecinos_K);
         printf("\n\n");
 
         printf("Aplicamos el algoritmo ENN\n");
-        //algoritmoENN(&lista, numVecinos_K);
+        algoritmoENN(&lista, numVecinos_K);
         printf("\n\n");
 
         printf("Despues de aplicar el algoritmo ENN, la efectividad del dataset es: \n");
-        //precisionAcierto(&lista, numVecinos_K);
+        precisionAcierto(&lista, numVecinos_K);
         printf("\n\n");
 
 

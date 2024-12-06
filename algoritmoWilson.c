@@ -1,6 +1,8 @@
+#include "algoritmoWilson.h"
+#include "listaordenadavecinos.h"
+#include <stdlib.h>
 
-
-void precisionDeAcierto(listaEstudiantes *l, int K) // -> comprobar si la predicción del nivel de calidad del sueño (basada en los vecinos más cercanos) es correcta en relación con los datos reales de cada estudiante
+void precisionAcierto(listaEstudiantes *l, int K) // -> comprobar si la predicción del nivel de calidad del sueño (basada en los vecinos más cercanos) es correcta en relación con los datos reales de cada estudiante
 {
     listaEstudiantes listaAuxiliar;
     listaOrdenadaVecinos vecinos;
@@ -43,7 +45,7 @@ void precisionDeAcierto(listaEstudiantes *l, int K) // -> comprobar si la predic
         }
 
         // Añadir el elemento a ambas listas
-        insertar(&listaAuxiliar, ant->dato);
+        añadirDato(&listaAuxiliar, ant->dato);
         desencolar(l);
         cont2++;
     }
