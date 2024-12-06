@@ -8,7 +8,7 @@ typedef calidadDelSueño tipoElementoLista;
 typedef struct celdaEstudiantes{
     tipoElementoLista dato;
     struct celdaEstudiantes *sig;
-    int id;  //lista[0] == id 0, lista[N] == id N //creo que se puede quitar
+    int id;  //lista[0] == id 0, lista[N] == id N
 } celdaEstudiantes;
 
 typedef struct listaEstudiantes{

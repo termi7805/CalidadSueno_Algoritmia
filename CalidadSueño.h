@@ -6,7 +6,7 @@
 
 typedef struct calidadDelSueño
 {
-    int id;
+    int id; //numero de dato
     int año_universidad;
     int edad;
     int genero;
@@ -22,11 +22,7 @@ typedef struct calidadDelSueño
     int cafeina; //cafeina tomada
 } calidadDelSueño;
 
+void leerCalidadDelSueño(calidadDelSueño *);
 
-calidadDelSueño nuevoEstudiante (int id, int edad, int genero, int año_universidad, float horas_sueño, float horas_estudio, float horas_pantalla, float cafeina, int actividad_fisica, int calidad_sueño, float acostar_semana, float acostar_finde, float despertar_semana, float despertar_finde);
-
-bool sueño(calidadDelSueño);
-
-void cambiarCalidad(calidadDelSueño *, int);
 
 #endif

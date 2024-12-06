@@ -1,35 +1,68 @@
 #include "CalidadSueño.h"
 
-
-/*calidadDelSueño nuevoEstudiante (int id, int edad, int genero, int año_universidad, float horas_sueño, float horas_estudio, float horas_pantalla, float cafeina, int actividad_fisica, int calidad_sueño, float acostar_semana, float acostar_finde, float despertar_semana, float despertar_finde)
+void leerCalidadDelSueño(calidadDelSueño * CS)
 {
-    calidadDelSueño nuevo;
+    int horas, minutos;
 
-    nuevo.id = id;
-    nuevo.edad = edad;
-    nuevo.genero = genero;
-    nuevo.año_universidad = año_universidad;
-    nuevo.horas_sueño = horas_sueño;
-    nuevo.horas_estudio = horas_estudio;
-    nuevo.horas_pantalla = horas_pantalla;
-    nuevo.cafeina = cafeina;
-    nuevo.actividad_fisica = actividad_fisica;
-    nuevo.acostar_semana = acostar_semana;
-    nuevo.acostar_finde = acostar_finde;
-    nuevo.despertar_semana = despertar_semana;
-    nuevo.despertar_finde = despertar_finde;
+    printf("Introduce su edad: ");
+    scanf("%d",&CS -> edad);
+    printf("\n");
 
-    return nuevo;
-}*/
+    printf("Introduce su genero (Mujer = 0 || Hombre = 1 || Otro = 2): ");
+    scanf("%d",&CS -> genero);
+    printf("\n");
 
+    printf("Introduce el año de universidad en el que se encuentra: ");
+    scanf("%d", &CS -> año_universidad);
+    printf("\n");
 
-/*bool sueño(calidadDelSueño calidadSueño)
-{
-    return calidadSueño.calidad_sueño;
-}*/
+    printf("Introduce el numero de horas y minutos que has DORMIDO en este formato (horas minutos): ");
+    scanf("%d" "%d", &horas, &minutos);
+    minutos = ((minutos * 100) / 60) / 100;  // para pasar de minutos a la coma -> 30 mins = 0.50 horas
+    CS -> horas_sueño = horas + minutos;
+    printf("\n");
 
-/*void cambiarCalidad(calidadDelSueño *calidadSueño, int calidad)
-{
-    calidadSueño->calidad_sueño = calidad;
-}*/
+    printf("Introduce el numero de horas y minutos que has ESTUDIADO en este formato (horas minutos): ");
+    scanf("%d" "%d", &horas, &minutos);
+    minutos = ((minutos * 100) / 60) / 100;
+    CS -> horas_estudio = horas + minutos;
+    printf("\n");
 
+    printf("Introduce el numero de horas y minutos que has estado MIRANDO PANTALLAS en este formato (horas minutos): ");
+    scanf("%d" "%d", &horas, &minutos);
+    minutos = ((minutos * 100) / 60) / 100;
+    CS -> horas_pantalla = horas + minutos;
+    printf("\n");
+
+    printf("Introduce los gramos de cafeina que ha tomado sin decimales: ");
+    scanf("%d", &CS -> cafeina);
+    printf("\n");
+
+    printf("Introduce cuanta actividad fisica ha hecho sin decimales (0 = Nada / 100 = Mucha): ");
+    scanf("%d", &CS -> actividad_fisica);
+    printf("\n");
+
+    printf("Introduce a que hora te sueles acostar durante la semana (hora minutos). Ejemplo (21 84): ");
+    scanf("%d" "%d", &horas, &minutos);
+    minutos = ((minutos * 100) / 60) / 100;
+    CS -> acostar_semana = horas + minutos;
+    printf("\n");
+
+    printf("Introduce a que hora te sueles acostar durante el fin de semana (hora minutos). Ejemplo (22 35): ");
+    scanf("%d" "%d", &horas, &minutos);
+    minutos = ((minutos * 100) / 60) / 100;
+    CS -> acostar_finde = horas + minutos;
+    printf("\n");
+
+    printf("Introduce a que hora te sueles despertar durante la semana (hora minutos). Ejemplo (6 54): ");
+    scanf("%d" "%d", &horas, &minutos);
+    minutos = ((minutos * 100) / 60) / 100;
+    CS -> despertar_semana = horas + minutos;
+    printf("\n");
+
+    printf("Introduce a que hora te sueles despertar durante el fin de semana (hora minutos). Ejemplo (8 93): ");
+    scanf("%d" "%d", &horas, &minutos);
+    minutos = ((minutos * 100) / 60) / 100;
+    CS -> despertar_finde = horas + minutos;
+    printf("\n");
+}

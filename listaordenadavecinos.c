@@ -203,6 +203,22 @@ float distancia(calidadDelSueño a, tipoElementoLista b) //Calcula la distancia 
     suma += pow(a.cafeina - b.cafeina, 2);
     return sqrt(suma);
 }
+
+void imprimirResultados(calidadDelSueño CS, listaOrdenadaVecinos lista)
+{
+    celdaVecino * aux;
+
+    printf("El nivel de calidad de sueño a comprobar ha resultado ser: %d\n\n", mediaVecinos(lista));
+    aux = lista.primero;
+    int i = 1;
+    while (aux != NULL)
+    {
+        printf("La distancia a la calidad de sueño %d mas cercana ha sido %f, perteneciente a la posicion %d: \n", i, aux->distancia, aux->id);
+        imprimeDato(aux->estudiante->dato);
+        aux = aux->siguiente;
+        i = i + 1;
+    }
+}
 	
 
 
