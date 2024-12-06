@@ -61,9 +61,9 @@ int mediaVecinos(listaOrdenadaVecinos l)
 		aux = aux->siguiente;
 	}
 	
-	int tipoPredominante = 0; //Nivel de calidad de sueño con mas frecuencia
+	int tipoPredominante = -1; //Nivel de calidad de sueño con mas frecuencia
 
-	for (int i = 1; i<10; i++){ 
+	for (int i = 0; i<10; i++){
 		
 		if(tipo[i] > tipo[tipoPredominante])
 		{
@@ -190,7 +190,7 @@ float distancia(calidadDelSueño a, calidadDelSueño b) //Calcula la distancia e
     float suma = 0;
     suma += pow(a.año_universidad - b.año_universidad, 2);
     suma += pow(a.edad - b.edad, 2);
-    suma += pow(a.genero - b.genero, 2);
+	suma += (a.genero == b.genero) ? 0 : 1;
     suma += pow(a.actividad_fisica - b.actividad_fisica, 2);
     suma += pow(a.calidad_sueño - b.calidad_sueño, 2);
     suma += pow(a.acostar_semana - b.acostar_semana, 2);
@@ -201,6 +201,7 @@ float distancia(calidadDelSueño a, calidadDelSueño b) //Calcula la distancia e
     suma += pow(a.horas_estudio - b.horas_estudio, 2);
     suma += pow(a.horas_pantalla - b.horas_pantalla, 2);
     suma += pow(a.cafeina - b.cafeina, 2);
+
     return sqrt(suma);
 }
 
