@@ -234,7 +234,6 @@ float distancia(calidadDelSueño a, calidadDelSueño b) //Calcula la distancia e
     suma += pow(a.edad - b.edad, 2);
 	suma += (a.genero == b.genero) ? 0 : 1;
     suma += pow(a.actividad_fisica - b.actividad_fisica, 2);
-    suma += pow(a.calidad_sueño - b.calidad_sueño, 2);
     suma += pow(a.acostar_semana - b.acostar_semana, 2);
     suma += pow(a.acostar_finde - b.acostar_finde, 2);
     suma += pow(a.despertar_semana - b.despertar_semana, 2);
