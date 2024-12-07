@@ -176,28 +176,6 @@ void eliminarConPos(listaOrdenadaVecinos *l, int pos)//
 
     free(aux);
     l->numeroVecinos--;
-
-
-	/*while(aux->siguiente != NULL){
-		ant = aux;
-		aux = aux->siguiente;
-		i++;
-	}
-
-	if(ant == NULL){
-
-		l->primero = NULL;
-		l->ultimo = NULL;
-		free(aux);
-		l->numeroVecinos = l->numeroVecinos - 1;
-	}
-	else{
-
-		l->ultimo = ant;
-		l->ultimo->siguiente = NULL;
-		free(aux);
-		l->numeroVecinos = l->numeroVecinos - 1;
-	}*/
 }
 
 listaOrdenadaVecinos distanciaMinima(calidadDelSueño CS, listaEstudiantes lista, int K) //Crea lista de K vecinos cercanos

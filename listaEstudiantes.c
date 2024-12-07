@@ -53,7 +53,7 @@ listaEstudiantes cargarDatos(FILE *  fd)  //para cargar el dataset
 
     while (fscanf(fd, "%d,%d,%[^,],%[^,],%f,%f,%f,%d,%d,%d,%f,%f,%f,%f", &nuevo.id, &nuevo.edad, generoStr, añoUniStr, &nuevo.horas_sueño, &nuevo.horas_estudio, &nuevo.horas_pantalla, &nuevo.cafeina, &nuevo.actividad_fisica, &nuevo.calidad_sueño, &nuevo.acostar_semana, &nuevo.acostar_finde, &nuevo.despertar_semana, &nuevo.despertar_finde) != EOF)
     {
-        printf("Dato ID %d: \n%d %s %s %f %f %f %d %d %d %f %f %f %f\n", nuevo.id, nuevo.edad, generoStr, añoUniStr, nuevo.horas_sueño, nuevo.horas_estudio, nuevo.horas_pantalla, nuevo.cafeina, nuevo.actividad_fisica, nuevo.calidad_sueño, nuevo.acostar_semana, nuevo.acostar_finde, nuevo.despertar_semana, nuevo.despertar_finde);
+        printf("Dato ID %d: \n%d %s %s %.2f %.2f %.2f %d %d %d %.2f %.2f %.2f %.2f\n", nuevo.id, nuevo.edad, generoStr, añoUniStr, nuevo.horas_sueño, nuevo.horas_estudio, nuevo.horas_pantalla, nuevo.cafeina, nuevo.actividad_fisica, nuevo.calidad_sueño, nuevo.acostar_semana, nuevo.acostar_finde, nuevo.despertar_semana, nuevo.despertar_finde);
 
         if(strcmp(generoStr, "Male") == 0)
             nuevo.genero = 0;
@@ -92,7 +92,7 @@ void desencolarEstudiantes(listaEstudiantes *lista)
 
 #include <limits.h>
 
-void inicializaMinMax (int minimo[12], int maximo[12], listaEstudiantes lista, calidadDelSueño calidad)
+void inicializaMinMax (float minimo[12], float maximo[12], listaEstudiantes lista, calidadDelSueño calidad)
 {
     celdaEstudiantes* aux = lista.primero;
 
@@ -166,8 +166,8 @@ void inicializaMinMax (int minimo[12], int maximo[12], listaEstudiantes lista, c
 
 void normalizar(listaEstudiantes *lista, calidadDelSueño *calidad)
 {
-    int minimo[12] = {0,0,0,0,0,0,0,0,0,0,0,0};
-    int maximo[12] = {0,0,0,0,0,0,0,0,0,0,0,0};
+    float minimo[12] = {0,0,0,0,0,0,0,0,0,0,0,0};
+    float maximo[12] = {0,0,0,0,0,0,0,0,0,0,0,0};
 
     inicializaMinMax(minimo, maximo, *lista, *calidad);
 
@@ -205,9 +205,9 @@ void normalizar(listaEstudiantes *lista, calidadDelSueño *calidad)
     //normalizamos el dato que hemos solicitado al usuario
     if(maximo[0] != minimo[0]) //para no dividir por 0
         calidad->edad = (calidad->edad - minimo[0]) / (maximo[0] - minimo[0]);
-    if(maximo[1] != minimo[1]) //para no dividir por 0
+    if(maximo[1] != minimo[1])
         calidad->genero = (calidad->genero - minimo[1]) / (maximo[1] - minimo[1]);
-    if(maximo[2] != minimo[2]) //para no dividir por 0
+    if(maximo[2] != minimo[2])
         calidad->año_universidad = (calidad->año_universidad - minimo[2]) / (maximo[2] - minimo[2]);
     if(maximo[3] != minimo[3])
         calidad->horas_sueño = (calidad->horas_sueño - minimo[3]) / (maximo[3] - minimo[3]);
