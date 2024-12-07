@@ -32,7 +32,7 @@ bool deberiaEstarEnLaLista(listaOrdenadaVecinos lista, float distancia)
 	}	
 	
 	else{
-		return (distancia < lista.ultimo->distancia); //true: si es menor  false: si es mayor
+		return (distancia < (lista.ultimo->distancia)); //true: si es menor  false: si es mayor
 	}
 }
 
@@ -61,7 +61,7 @@ int mediaVecinos(listaOrdenadaVecinos l)
 		aux = aux->siguiente;
 	}
 	
-	int tipoPredominante = -1; //Nivel de calidad de sueño con mas frecuencia
+	int tipoPredominante = 0; //Nivel de calidad de sueño con mas frecuencia
 
 	for (int i = 0; i<10; i++){
 		
@@ -140,7 +140,47 @@ void eliminarConPos(listaOrdenadaVecinos *l, int pos)//
 	celdaVecino *ant = NULL;
 	pos = pos - 1;
 
-	while(aux->siguiente != NULL && aux != NULL){
+	if (l->primero == l->ultimo && pos == 0) { //tenemos 1 elemento
+        free(l->primero);
+        l->primero = NULL;
+        l->ultimo = NULL;
+        l->numeroVecinos--;
+        return;
+    }
+
+    while (aux != NULL && i < pos) {
+        ant = aux;
+        aux = aux->siguiente;
+        i++;
+    }
+
+    if (aux == NULL) {
+        printf("Posición no válida\n");
+        return;
+    }
+
+    // Si el nodo a eliminar es el primero
+    if (ant == NULL) {
+        l->primero = aux->siguiente;
+        if (l->primero == NULL) {
+            l->ultimo = NULL; // Si la lista queda vacía
+        }
+    }
+    // Si el nodo a eliminar es el último
+    else if (aux->siguiente == NULL) {
+        l->ultimo = ant;
+        ant->siguiente = NULL;
+    }
+    // Si el nodo está en el medio
+    else {
+        ant->siguiente = aux->siguiente;
+    }
+
+    free(aux);
+    l->numeroVecinos--;
+
+
+	/*while(aux->siguiente != NULL){
 		ant = aux;
 		aux = aux->siguiente;
 		i++;
@@ -159,7 +199,7 @@ void eliminarConPos(listaOrdenadaVecinos *l, int pos)//
 		l->ultimo->siguiente = NULL;
 		free(aux);
 		l->numeroVecinos = l->numeroVecinos - 1;
-	}
+	}*/
 }
 
 listaOrdenadaVecinos distanciaMinima(calidadDelSueño CS, listaEstudiantes lista, int K) //Crea lista de K vecinos cercanos
@@ -167,13 +207,15 @@ listaOrdenadaVecinos distanciaMinima(calidadDelSueño CS, listaEstudiantes lista
 	listaOrdenadaVecinos vecinosCercanos;
 	celdaEstudiantes *aux;
 	celdaVecino nueva;
+
 	iniciarListaVecinos(&vecinosCercanos);
 	cambiarK(&vecinosCercanos, K);
+
 	aux = lista.primero;
 	while (aux != NULL)
 	{
-		nueva.distancia = distancia(CS, aux->dato);
-		if(deberiaEstarEnLaLista(vecinosCercanos, nueva.distancia))
+		float dist = distancia(CS, aux->dato);
+		if(deberiaEstarEnLaLista(vecinosCercanos, dist))
 		{
 			nueva.id = aux->id - 1;
 			nueva.distancia = distancia(CS, aux->dato);

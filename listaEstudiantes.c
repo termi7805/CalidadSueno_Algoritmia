@@ -92,7 +92,7 @@ void desencolarEstudiantes(listaEstudiantes *lista)
 
 #include <limits.h>
 
-void inicializaMinMax (int *minimo, int *maximo, listaEstudiantes lista, calidadDelSueño calidad)
+void inicializaMinMax (int minimo[12], int maximo[12], listaEstudiantes lista, calidadDelSueño calidad)
 {
     celdaEstudiantes* aux = lista.primero;
 
@@ -177,6 +177,10 @@ void normalizar(listaEstudiantes *lista, calidadDelSueño *calidad)
     {
         if(maximo[0] != minimo[0]) //para no dividir por 0
             aux->dato.edad = (aux->dato.edad - minimo[0]) / (maximo[0] - minimo[0]);
+        if(maximo[1] != minimo[1])
+            aux->dato.genero = (aux->dato.genero - minimo[1]) / (maximo[1] - minimo[1]);
+        if(maximo[2] != minimo[2])
+            aux->dato.año_universidad = (aux->dato.año_universidad - minimo[2]) / (maximo[2] - minimo[2]);
         if(maximo[3] != minimo[3])
             aux->dato.horas_sueño = (aux->dato.horas_sueño - minimo[3]) / (maximo[3] - minimo[3]);
         if(maximo[4] != minimo[4])
@@ -201,6 +205,10 @@ void normalizar(listaEstudiantes *lista, calidadDelSueño *calidad)
     //normalizamos el dato que hemos solicitado al usuario
     if(maximo[0] != minimo[0]) //para no dividir por 0
         calidad->edad = (calidad->edad - minimo[0]) / (maximo[0] - minimo[0]);
+    if(maximo[1] != minimo[1]) //para no dividir por 0
+        calidad->genero = (calidad->genero - minimo[1]) / (maximo[1] - minimo[1]);
+    if(maximo[2] != minimo[2]) //para no dividir por 0
+        calidad->año_universidad = (calidad->año_universidad - minimo[2]) / (maximo[2] - minimo[2]);
     if(maximo[3] != minimo[3])
         calidad->horas_sueño = (calidad->horas_sueño - minimo[3]) / (maximo[3] - minimo[3]);
     if(maximo[4] != minimo[4])

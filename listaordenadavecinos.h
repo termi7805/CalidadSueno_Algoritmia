@@ -25,7 +25,7 @@ bool estaVacia(listaOrdenadaVecinos);
 
 bool estaLlena(listaOrdenadaVecinos);
 
-bool deberiaEstarenLaLista(listaOrdenadaVecinos , float);
+bool deberiaEstarEnLaLista(listaOrdenadaVecinos , float);
 
 int mediaVecinos(listaOrdenadaVecinos);
 
