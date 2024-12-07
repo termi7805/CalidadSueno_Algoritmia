@@ -2,7 +2,7 @@
 #include "listaordenadavecinos.h"
 #include <stdlib.h>
 
-void precisionAcierto(listaEstudiantes *l, int K) // -> comprobar si la predicción del nivel de calidad del sueño (basada en los vecinos más cercanos) es correcta en relación con los datos reales de cada estudiante
+void precisionAcierto(listaEstudiantes *l, int K)
 {
     listaEstudiantes listaAuxiliar;
     listaOrdenadaVecinos vecinos;
@@ -15,26 +15,21 @@ void precisionAcierto(listaEstudiantes *l, int K) // -> comprobar si la predicci
 
     aux = l->primero;
 
-    // Procesar todos los estudiantes
     while (aux != NULL && aux->id <= l->ultimo->id)
     {
         ant = aux;
         aux = aux->sig;
 
-        // Calcular los vecinos más cercanos de ant`
-        vecinos = distanciaMinima(ant->dato, *l, K);
+        vecinos = distanciaMinima(ant->dato, *l, K); //vecinos mas cercanos
 
-        // Predecir el nivel de calidad del sueño basado en la media de los vecinos
-        calidadSueñoPredicha = mediaVecinos(vecinos);
+        calidadSueñoPredicha = mediaVecinos(vecinos); // Predecimos el nivel de calidad del sueño basandonos en la media de los vecinos
 
-        // Limpiar la lista de vecinos después de usarla
-         while (!estaVacia(vecinos))
+        while (!estaVacia(vecinos))
         {
             desencolarVecinos(&vecinos);
         }
 
-        // Verificar si la predicción coincide con el valor real
-        if (calidadSueñoPredicha == ant->dato.calidad_sueño)
+        if (calidadSueñoPredicha == ant->dato.calidad_sueño) // Verificamos si la predicción coincide con el valor real
         {
             cont++;
         }
@@ -143,7 +138,6 @@ void algoritmoENN(listaEstudiantes *l, int K) // -> limpiar la lista de estudian
         printf("Error: la lista original no se vació correctamente\n");
     }
 
-    // Reemplazar la lista original con la lista depurada
     *l = listaAuxiliar;
 }
 

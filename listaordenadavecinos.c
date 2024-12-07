@@ -107,28 +107,26 @@ void insertarVecino(listaOrdenadaVecinos *l, celdaVecino c) //
 
                 nueva->siguiente = l->primero;
 				l->primero = nueva;
-				l->numeroVecinos++;
 			}
 			else if (nueva->distancia >= l->ultimo->distancia){
 
                 l->ultimo->siguiente = nueva;
                 l->ultimo = nueva;
 				nueva->siguiente = NULL;
-				l->numeroVecinos = l->numeroVecinos + 1;
 			}
             else{	  
 
                 celdaVecino *ant = NULL;
 				celdaVecino *aux = l->primero;
-				while ((aux->distancia) < (nueva->distancia)){
+				while (aux != NULL && ((aux->distancia) < (nueva->distancia))){
 					ant = aux;
 					aux = aux->siguiente;
 				}
 
 				nueva->siguiente = aux;
 				ant->siguiente = nueva;
-				l->numeroVecinos = l->numeroVecinos + 1;
 			}
+			l->numeroVecinos = l->numeroVecinos + 1;
         }
     }
 }
@@ -214,11 +212,11 @@ listaOrdenadaVecinos distanciaMinima(calidadDelSueño CS, listaEstudiantes lista
 	aux = lista.primero;
 	while (aux != NULL)
 	{
-		float dist = distancia(CS, aux->dato);
+		float dist = distanciaDatos(CS, aux->dato);
 		if(deberiaEstarEnLaLista(vecinosCercanos, dist))
 		{
 			nueva.id = aux->id - 1;
-			nueva.distancia = distancia(CS, aux->dato);
+			nueva.distancia = dist;
 			nueva.estudiante = aux;
 			insertarVecino(&vecinosCercanos, nueva);
 		}
@@ -227,12 +225,12 @@ listaOrdenadaVecinos distanciaMinima(calidadDelSueño CS, listaEstudiantes lista
 	return vecinosCercanos;
 }
 
-float distancia(calidadDelSueño a, calidadDelSueño b) //Calcula la distancia euclidea entre dos elementos
+float distanciaDatos(calidadDelSueño a, calidadDelSueño b) //Calcula la distancia euclidea entre dos elementos
 {
     float suma = 0;
     suma += pow(a.año_universidad - b.año_universidad, 2);
     suma += pow(a.edad - b.edad, 2);
-	suma += (a.genero == b.genero) ? 0 : 1;
+	suma += pow(a.genero - b.genero, 2);
     suma += pow(a.actividad_fisica - b.actividad_fisica, 2);
     suma += pow(a.acostar_semana - b.acostar_semana, 2);
     suma += pow(a.acostar_finde - b.acostar_finde, 2);

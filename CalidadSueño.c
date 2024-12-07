@@ -26,11 +26,11 @@ void leerCalidadDelSueño(calidadDelSueño * CS)
     scanf("%f", &CS -> horas_pantalla);
     printf("\n");
 
-    printf("Introduce los gramos de cafeina que ha tomado sin decimales: ");
+    printf("Introduce los gramos de cafeina que ha tomado sin decimales (0 = Nada / 5 = Mucha): ");
     scanf("%d", &CS -> cafeina);
     printf("\n");
 
-    printf("Introduce cuanta actividad fisica ha hecho sin decimales (0 = Nada / 100 = Mucha): ");
+    printf("Introduce cuanta actividad fisica ha hecho sin decimales (0 = Nada / 120 = Mucha): ");
     scanf("%d", &CS -> actividad_fisica);
     printf("\n");
 

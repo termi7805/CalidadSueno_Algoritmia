@@ -35,7 +35,7 @@ void eliminarConPos(listaOrdenadaVecinos *, int);
 
 listaOrdenadaVecinos distanciaMinima(calidadDelSueño, listaEstudiantes, int);
 
-float distancia(calidadDelSueño, calidadDelSueño);
+float distanciaDatos(calidadDelSueño, calidadDelSueño);
 
 void imprimirResultados(listaOrdenadaVecinos);
 
