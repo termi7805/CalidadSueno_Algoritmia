@@ -42,19 +42,27 @@ void leerCalidadDelSueño(calidadDelSueño * CS)
     scanf("%d", &CS -> actividad_fisica);
     printf("\n");
 
-    printf("Introduce a que hora te sueles acostar durante la semana (hora.minutos): ");
-    scanf("%f", &CS -> acostar_semana);
+    printf("Introduce a que hora te sueles acostar durante la semana (horas minutos): ");
+    scanf("%f" "%f", &horas, &minutos);
+    minutos = ((minutos * 100) / 60) / 100;
+    CS -> acostar_semana = horas + minutos;
     printf("\n");
 
-    printf("Introduce a que hora te sueles acostar durante el fin de semana (hora.minutos): ");
-    scanf("%f", &CS -> acostar_finde);
+    printf("Introduce a que hora te sueles acostar durante el fin de semana (horas minutos): ");
+    scanf("%f" "%f", &horas, &minutos);
+    minutos = ((minutos * 100) / 60) / 100;
+    CS -> acostar_finde = horas + minutos;
     printf("\n");
 
-    printf("Introduce a que hora te sueles despertar durante la semana (hora.minutos): ");
-    scanf("%f", &CS -> despertar_semana);
+    printf("Introduce a que hora te sueles despertar durante la semana (horas minutos): ");
+    scanf("%f" "%f", &horas, &minutos);
+    minutos = ((minutos * 100) / 60) / 100;
+    CS -> despertar_semana = horas + minutos;
     printf("\n");
 
-    printf("Introduce a que hora te sueles despertar durante el fin de semana (hora.minutos): ");
-    scanf("%f", &CS -> despertar_finde);
+    printf("Introduce a que hora te sueles despertar durante el fin de semana (horas minutos): ");
+    scanf("%f" "%f", &horas, &minutos);
+    minutos = ((minutos * 100) / 60) / 100;
+    CS -> despertar_finde = horas + minutos;
     printf("\n");
 }
