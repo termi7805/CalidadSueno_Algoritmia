@@ -25,7 +25,7 @@ bool estaLlena(listaOrdenadaVecinos lista)
 	return lista.numeroVecinos == lista.maximo;
 }
 
-bool deberiaEstarEnLaLista(listaOrdenadaVecinos lista, float distancia)
+bool deberiaEstarEnLaLista(listaOrdenadaVecinos lista, float distancia) //devuelve si el dato de la lista es candidato para entrar en la listaOrdenadaVecinos (si la distancia al ejemplo es menor de las que hay en la lista)
 {
 	if(!estaLlena(lista)){
 		return true;
@@ -63,7 +63,7 @@ int mediaVecinos(listaOrdenadaVecinos l)
 	
 	int tipoPredominante = 0; //Nivel de calidad de sueño con mas frecuencia
 
-	for (int i = 0; i<10; i++){
+	for (int i = 0; i<10; i++){ //Actualizamos el tipo predominante al que mas veces haya aparecido
 		
 		if(tipo[i] > tipo[tipoPredominante])
 		{
@@ -81,7 +81,7 @@ int mediaVecinos(listaOrdenadaVecinos l)
 	return tipoPredominante + 1; //+1 porque nuestro array va del 0-9
 }
 
-void insertarVecino(listaOrdenadaVecinos *l, celdaVecino c) //
+void insertarVecino(listaOrdenadaVecinos *l, celdaVecino c) //insertamos un nuevo dato a lista de vecinos si este es valido para la lista (dependiendo de la distancia)
 {
     celdaVecino *nueva = (celdaVecino*)malloc(sizeof(celdaVecino));
     *nueva = c;

@@ -22,6 +22,6 @@ typedef struct calidadDelSueño
     int cafeina; //cafeina tomada
 } calidadDelSueño;
 
-void leerCalidadDelSueño(calidadDelSueño *);
+void leerCalidadDelSueño(calidadDelSueño *); //funcion para recopilar los datos
 
 #endif

@@ -61,7 +61,7 @@ void precisionAcierto(listaEstudiantes *l, int K)
 }
 
 
-void algoritmoENN(listaEstudiantes *l, int K) // -> limpiar la lista de estudiantes eliminando aquellos cuya predicción de calidad del sueño no fue correcta, conservando solo aquellos  con predicciones correctas. De esta manera, la lista original se depura para que solo contenga los elementos más precisos.
+void algoritmoENN(listaEstudiantes *l, int K)
 {
     listaEstudiantes listaAuxiliar;
     listaOrdenadaVecinos vecinos;
