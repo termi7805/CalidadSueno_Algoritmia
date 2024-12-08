@@ -1,6 +1,7 @@
 #include "listaordenadavecinos.h"
 #include "algoritmoWilson.h"
 #include <stdlib.h>
+#include <unistd.h>
 
 int main(void)
 {
@@ -13,8 +14,14 @@ int main(void)
     char fichero[100];
     FILE *fd;
 
-    printf("Este algoritmo calcula la calidad de sueño de estudiantes universitarios\n");
-
+    printf("-------------------------------------------------------------------------------------\n");
+    printf("Programa: analizadorCalidad.c\n");
+    printf("Autores: Nahia, Asier, Hodei, Unai\n");
+    printf("Descripción:\n");
+    printf("\tEste algoritmo calcula la calidad de sueño de estudiantes\n");
+    printf("\tuniversitarios por aprendizaje a través de un dataset\n");
+    printf("-------------------------------------------------------------------------------------\n");
+    
     printf("Por favor, introduce el dataset: ");
     scanf("%s", fichero);
     while ((fd = fopen(fichero, "r")) == NULL)
@@ -50,28 +57,25 @@ int main(void)
         }
         printf("\n");
 
-
+        //Calculo de la predicción
         iniciarListaVecinos(&listaVecinos);
         listaVecinos = distanciaMinima(CalidadDelSueño, lista, numVecinos_K);
         imprimirResultados(listaVecinos);
         printf("\n");
-
-
+        printf("Ahora se calculará la efectividad del dataset...\n");
+        sleep(5);
         //ALGORITMO DE WILSON
         printf("La efectividad del dataset es: \n");
-        //precisionAcierto(&lista, numVecinos_K);
+        precisionAcierto(&lista, numVecinos_K);
         printf("\n\n");
 
         printf("Aplicamos el algoritmo ENN\n");
-        //algoritmoENN(&lista, numVecinos_K);
+        algoritmoENN(&lista, numVecinos_K);
         printf("\n\n");
 
         printf("Despues de aplicar el algoritmo ENN, la efectividad del dataset es: \n");
-        //precisionAcierto(&lista, numVecinos_K);
+        precisionAcierto(&lista, numVecinos_K);
         printf("\n\n");
-
-        precisionYDepuracion(&lista, numVecinos_K);
-
 
 
         printf("Desea hacer otra prueba con el mismo dataset? (s/n): ");
@@ -83,13 +87,10 @@ int main(void)
 
     //eliminamos la lista de estudiantes
     while (!esListaVacia(lista)) // Recorremos hasta que la lista esté vacía
-    {
         desencolarEstudiantes(&lista); // Elimina el primer nodo y lo libera
-    }
+    
     while (!estaVacia(listaVecinos)) // Recorremos hasta que la lista esté vacía
-    {
         desencolarVecinos(&listaVecinos); // Elimina el primer nodo y lo libera
-    }
 
 
     return 0;

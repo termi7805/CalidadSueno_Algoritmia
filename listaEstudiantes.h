@@ -25,4 +25,5 @@ void normalizar(listaEstudiantes *, calidadDelSueño *);
 void imprimeDato(calidadDelSueño);
 void imprimeListaEntera(listaEstudiantes);
 
+
 #endif

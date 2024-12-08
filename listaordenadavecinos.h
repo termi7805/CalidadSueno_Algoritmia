@@ -1,5 +1,6 @@
 #ifndef LISTAORDENADAVECINOS_H
 #define LISTAORDENADAVECINOS_H
+
 #include "listaEstudiantes.h"
 
 typedef struct celdaVecino{
@@ -7,14 +8,14 @@ typedef struct celdaVecino{
     float distancia;
     celdaEstudiantes *estudiante;
     struct celdaVecino *siguiente;
-}celdaVecino;
+} celdaVecino;
 
 typedef struct listaOrdenadaVecinos{
     celdaVecino* primero;
     celdaVecino* ultimo;
     int numeroVecinos;
     int maximo; //k
-}listaOrdenadaVecinos;
+} listaOrdenadaVecinos;
 
 
 void iniciarListaVecinos(listaOrdenadaVecinos *);
@@ -40,7 +41,6 @@ float distanciaDatos(calidadDelSueño, calidadDelSueño);
 void imprimirResultados(listaOrdenadaVecinos);
 
 void desencolarVecinos(listaOrdenadaVecinos *);
-
 
 
 #endif

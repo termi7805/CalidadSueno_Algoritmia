@@ -12,5 +12,5 @@ listaordenadavecinos: listaordenadavecinos.c
 algoritmoWilson: algoritmoWilson.c
 	gcc -Wall -c algoritmoWilson.c
 
-main: manejador.c CalidadSueño.o listaEstudiantes.o listaordenadavecinos.o algoritmoWilson.o
-	gcc -Wall -o manejador manejador.c CalidadSueño.o listaEstudiantes.o listaordenadavecinos.o algoritmoWilson.o -lm
+main: analizadorCalidad.c CalidadSueño.o listaEstudiantes.o listaordenadavecinos.o algoritmoWilson.o
+	gcc -Wall -o analizadorCalidad analizadorCalidad.c CalidadSueño.o listaEstudiantes.o listaordenadavecinos.o algoritmoWilson.o -lm

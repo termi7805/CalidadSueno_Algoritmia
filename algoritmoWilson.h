@@ -5,7 +5,5 @@
 
 void precisionAcierto(listaEstudiantes *, int);
 void algoritmoENN(listaEstudiantes *, int);
-void precisionYDepuracion(listaEstudiantes *, int);
-
 
 #endif
